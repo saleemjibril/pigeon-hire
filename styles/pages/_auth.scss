@@ -1,0 +1,194 @@
+.auth {
+  width: 100%;
+  max-width: 1352px;
+  padding: 48px 20px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 69px;
+
+  &__form {
+    &__logo {
+      margin-bottom: 32px;
+    }
+    &__login-logo {
+      margin-bottom: 64px;
+    }
+
+    &__title {
+      @extend %title-32;
+      margin-bottom: 16px;
+    }
+    &__subtitle {
+      @extend %title-18;
+      margin-bottom: 24px;
+      color: #8d8d8d;
+    }
+    &__subtitle-login {
+      margin-bottom: 32px;
+    }
+
+    &__input {
+      @extend %primary-input;
+      margin-bottom: 16px;
+    }
+    &__input-login {
+      @extend %primary-input;
+      margin-bottom: 32px;
+    }
+
+    &__terms {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+
+      & > div {
+        & > span {
+          color: $secondary-color;
+        }
+      }
+    }
+
+    &__password-instructions {
+      @extend %title-12;
+      color: #da1e28;
+      margin-top: -8px;
+      margin-bottom: 16px;
+
+      & > :first-child {
+        font-weight: 500;
+      }
+    }
+
+    &__forgot {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 33px;
+      margin-top: -16px;
+
+      & > :first-child {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      & > :last-child {
+        color: #da1e28;
+      }
+    }
+
+    &__back {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-weight: 600;
+      color: #0c1a13;
+      margin-bottom: 34.5px;
+      margin-top: -19.5px;
+    }
+
+    &__otp-input {
+        margin-bottom: 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 16px;
+        margin-top: 48px;
+
+        & > input {
+            @extend %otp-input;
+        }
+    }
+  }
+
+  &__button {
+    @extend %primary-button;
+    margin-bottom: 24px;
+    border: none;
+  }
+
+  &__form-login {
+    max-width: 496px;
+    margin: 0 auto;
+  }
+  &__form-register {
+    max-width: 599px;
+    margin: 0 auto;
+  }
+
+  &__login {
+    @extend %title-14;
+    text-align: center;
+    margin-bottom: 33px;
+    color: #8d8d8d;
+
+    & > a {
+      color: $secondary-color;
+      text-decoration: underline;
+    }
+  }
+
+  &__line {
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+    margin-bottom: 33px;
+  }
+  &__signup {
+    @extend %title-14;
+    text-align: center;
+    color: #8d8d8d;
+    background: #fff;
+    width: fit-content;
+    margin: -43px auto 24px auto;
+    padding: 0 15px;
+  }
+
+  &__oauth {
+    width: 100%;
+    max-width: 599px;
+    height: 64px;
+    background: none;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 48px;
+    border-radius: 32px;
+  }
+
+  &__resend {
+font-weight: 500;
+text-align: center;
+color: #8D8D8D;
+
+& > span {
+    text-decoration: underline;
+    color: $secondary-color;
+}
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+
+    &__copy {
+      @extend %title-14;
+      color: #8d8d8d;
+    }
+    &__links {
+      display: flex;
+      gap: 8px;
+      font-weight: 500;
+      white-space: nowrap;
+      align-items: center;
+    }
+  }
+
+  &__illustration {
+    width: 100%;
+    height: 100%;
+    background: #fafafa;
+    border-radius: 14px;
+  }
+
+
+}
