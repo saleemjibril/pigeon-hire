@@ -55,12 +55,12 @@ export default function Register() {
             />
           </div>
 
-          <div className="auth__form__password-instructions">
+          {/* <div className="auth__form__password-instructions">
             <div>Must have:</div>
             <div>Include one uppercase letter.</div>
             <div>Include at least one number.</div>
             <div>At least 8 characters long.</div>
-          </div>
+          </div> */}
           <label htmlFor="password">Confirm password</label>
 
           <div className="auth__form__input">
