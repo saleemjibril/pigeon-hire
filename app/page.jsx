@@ -1,3 +1,9 @@
+import Categories from "./components/categories";
+import ConnectorsAndCommunities from "./components/connectorsAndCommunities";
+import Filters from "./components/filters";
+import Header from "./components/header";
+import Search from "./components/search";
+import Sidebar from "./components/sidebar";
 
 
 export async function generateMetadata() {
@@ -11,6 +17,20 @@ export async function generateMetadata() {
 
 export default function Home() {
   return (
-    <div></div>
+    <div className="home">
+      <Sidebar />
+
+      <div className="home__inner">
+      <Header />
+      <div className="home__inner__inner">
+
+      <Search />
+      <br />
+      <Filters />
+      <Categories />
+      <ConnectorsAndCommunities />
+      </div>
+      </div>
+    </div>
   );
 }

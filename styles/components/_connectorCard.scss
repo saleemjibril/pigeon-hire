@@ -1,0 +1,55 @@
+.connector-card {
+    width: 100%;
+    background: #FAFAFA;
+    border: 1px solid #E5E5E5;
+    height: 146px;
+    border-radius: 24px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    &__user {
+        display: flex;
+        gap: 32px;
+    }
+
+    &__image {
+        width: 83px;
+        height: 77px;
+        background: #F5F5F5;
+    }
+
+    &__category {
+        @extend %title-12;
+        color: #8D8D8D;
+        margin-bottom: 8px;
+    }
+
+    &__title {
+        @extend %title-18;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+    &__position {
+        @extend %title-14;
+        color: #8D8D8D;
+        margin-bottom: 8px;
+    }
+
+    &__date-group {
+        width: 100%;
+        max-width: 214px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: fit-content;
+    }
+
+    &__date {
+        @extend %title-12;
+        font-weight: 500;
+    }
+
+    
+}

@@ -1,0 +1,38 @@
+.search {
+    width: 100%;
+    max-width: 1079px;
+    height: 58px;
+    border: 1px solid #E5E5E5;
+    border-radius: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin-right: 32px;
+
+    & > input {
+        width: 100%;
+        margin-left: 8px;
+        margin-right: 10px;
+        border: none;
+        font-size: $text-normal;
+        outline: transparent;
+    }
+
+    &__close {
+        margin-right: 17px;
+    }
+
+    &__line {
+        width: 1px;
+        height: 42px;
+        background: #E5E5E5;
+        margin-right: 17px;
+    }
+
+    & > select {
+        font-size: $text-normal;
+        color: #8D8D8D;
+        border: none;
+        outline: transparent;
+    }
+}
