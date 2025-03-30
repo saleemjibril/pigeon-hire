@@ -20,6 +20,12 @@
       background: #fafafa;
       font-weight: 500;
       border-radius: 15px;
+      cursor: pointer;
+
+      &:hover {
+        background: $secondary-color !important;
+        color: #FFF;
+      }
     }
   }
 }

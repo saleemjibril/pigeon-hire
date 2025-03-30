@@ -1,0 +1,40 @@
+.reviews-card {
+    width: 100%;
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 16px;
+
+    &__initials {
+        @extend %title-21;
+        font-weight: 500;
+        color: #FFFFFF;
+        min-width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #DF7C0D;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__inner {
+        &__title {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        &__stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        &__subtitle {
+            @extend %title-14;
+            color: #8D8D8D;
+            margin-bottom: 16px;
+        }
+    }
+}

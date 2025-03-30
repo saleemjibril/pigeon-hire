@@ -1,0 +1,195 @@
+.ratings {
+    padding: 24px;
+    border: 1px solid #E5E5E5;
+    border-radius: 24px;
+    &__title {
+        max-width: 829px;
+        margin: auto;
+        @extend %title-18;
+        font-weight: 500;
+        margin-bottom: 24px;
+    }
+
+    &__grid {
+        max-width: 829px;
+        margin: auto;
+        display: flex;
+        &__summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-right: 32px;
+            min-width: 128px;
+
+            &__title {
+                @extend %title-32;
+                font-weight: 600;
+                margin-bottom: 24px;
+            }
+
+            &__stars {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-bottom: 8px;
+            }
+
+            &__subtitle {
+                @extend %title-14;
+                color: #8D8D8D;
+            }
+        }
+
+        &__divider {
+            width: 1px;
+            height: 154px;
+            background: #E5E5E5;
+            margin-right: 32px;
+        }
+
+        &__range {
+            width: 100%;
+            margin-right: 32px;
+            &__bar-cover {
+                display: flex;
+                align-items: center;
+                gap: 32px;
+                margin-bottom: 19px;
+            }
+
+            &__bar {
+                width: 100%;
+                height: 12px;
+                border-radius: 16px;
+                background: #FAFAFA;
+
+                &__inner {
+                    height: 100%;
+                    background: #0EA42A;
+                    border-radius: 16px;
+                }
+
+                &__five {
+                    width: 80%;
+                }
+                &__four {
+                    width: 70%;
+                }
+                &__three {
+                    width: 60%;
+                }
+                &__two {
+                    width: 50%;
+                }
+                &__one {
+                    width: 40%;
+                }
+            }
+        }
+
+        &__review {
+            @extend %title-14;
+            line-height: unset;
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 8px 8px;
+            white-space: nowrap;
+
+            & >:nth-child(even) {
+                color: #8D8D8D;
+            }
+        }
+    }
+
+    &__divider {
+        width: 100%;
+        height: 1px;
+        background: #E5E5E5;
+        margin: 24px 0;
+    }
+    &__reviews {
+        &__title {
+            width: 100%;
+            max-width: 829px;
+            margin: auto;
+    
+            @extend
+             %title-18;
+             font-weight: 500;
+             margin-bottom: 24px;
+        }
+
+        &__cards {
+            width: 100%;
+            max-width: 829px;
+            margin: auto;    
+        }
+        
+        &__dropdown {
+            @extend %title-18;
+            width: 100%;
+            max-width: 829px;
+            margin: auto;
+            font-weight: 600;
+            color: #F6911F;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            text-decoration: underline;
+        }
+
+        &__divider {
+            width: 100%;
+            height: 1px;
+            background: #E5E5E5;
+            margin: 24px 0;
+        }
+
+        &__submit {
+            width: 100%;
+            max-width: 829px;
+            margin: auto;
+    
+            &__title {
+                @extend %title-18;
+                font-weight: 500;
+                margin-bottom: 24px;
+            }
+
+            &__experience {
+                @extend %title-14;
+                text-align: center;
+                margin-bottom: 24px;
+            }
+
+            &__stars {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+
+            & > textarea {
+                width: 100%;
+                height: 139px;
+                border: 1px solid #E5E5E5;
+                border-radius: 4px;
+                margin-bottom: 32px;
+                padding: 16px 24px;
+                // font-family: Inter;
+            }
+
+            & > button {
+                @extend %primary-button;
+                max-width: 429px;
+                height: 56px;
+                border-radius: 48px;
+                margin: auto;
+            }
+        }
+
+    }
+}

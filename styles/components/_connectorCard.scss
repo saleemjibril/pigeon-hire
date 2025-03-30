@@ -2,7 +2,7 @@
     width: 100%;
     background: #FAFAFA;
     border: 1px solid #E5E5E5;
-    height: 146px;
+    min-height: 146px;
     border-radius: 24px;
     padding: 24px 32px;
     display: flex;
@@ -15,7 +15,7 @@
     }
 
     &__image {
-        width: 83px;
+        min-width: 83px;
         height: 77px;
         background: #F5F5F5;
     }
@@ -33,6 +33,14 @@
     }
     &__position {
         @extend %title-14;
+        color: #8D8D8D;
+        margin-bottom: 8px;
+        width: 100%;
+        max-width: 58ch;
+    }
+
+    &__members {
+        @extend %title-12;
         color: #8D8D8D;
         margin-bottom: 8px;
     }

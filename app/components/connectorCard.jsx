@@ -1,16 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export default function ConnectorCard({verified}) {
+export default function ConnectorCard({verified, title, subtitle, members}) {
   return (
-    <div className="connector-card">
+    <Link href="/user/community" className="connector-card">
       <div className="connector-card__user">
         <div className="connector-card__image"></div>
         <div>
           <div className="connector-card__category">Category: Business</div>
-          <div className="connector-card__title">Fola Agoro</div>
+          <div className="connector-card__title">{title}</div>
           <div className="connector-card__position">
-            Senior buyer at Coca-Cola
+            {subtitle}
           </div>
+          {members && <div className="connector-card__members">
+            Members: {members}
+          </div>}
           <Image
             alt=""
             width={53}
@@ -38,6 +42,6 @@ export default function ConnectorCard({verified}) {
 
         <div className="connector-card__date">March 12</div>
       </div>
-    </div>
+    </Link>
   );
 }
