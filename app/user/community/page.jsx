@@ -1,13 +1,14 @@
 import CommunityDetails from "@/app/components/communityDetails";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Community() {
   return (
     <div className="community">
-      <div className="community__back">
+      <Link className="community__back" href="/" prefetch={true}>
         <Image src={"/assets/icons/backArrow.svg"} width={24} height={24} alt="" />
         Back
-      </div>
+      </Link>
 
       <div className="community__navigation">
         <div>Home</div>
