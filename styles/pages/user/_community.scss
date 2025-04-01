@@ -89,6 +89,34 @@
                 margin-right: 64px !important;
             }
         }
+        &__connector-size {
+            display: flex;
+            margin-bottom: 16px;
+            white-space: nowrap;
+            & >:first-child {
+             @extend %title-14;
+             color: #8D8D8D;
+             margin-right: 22px;
+            }
+            & >:nth-child(2) {
+             margin-right: 29px;
+            }
+            & >:nth-child(3) {
+                @extend %title-14;
+                color: #8D8D8D;
+                margin-right: 27px;
+            }
+            & >:nth-child(4) {
+                margin-right: 32px;
+            }
+            & >:nth-child(5) {
+                @extend %title-14;
+             color: #8D8D8D;
+             margin-right: 22px;
+            }
+
+            
+        }
 
         &__contact {
             @extend %primary-button;

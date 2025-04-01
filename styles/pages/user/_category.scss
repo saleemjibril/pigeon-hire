@@ -1,0 +1,28 @@
+.category {
+    &__inner {
+        &__tabs {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #E5E5E5;
+            
+            & > div {
+                @extend %title-18;
+                font-weight: 500;
+                color: #8D8D8D;
+                // width: 192px;
+                height: 46px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0 16px;
+            }
+    
+            &__active {
+                color: #F6911F !important;
+                border-bottom: 1px solid #F6911F;
+            }
+        }
+    }
+}

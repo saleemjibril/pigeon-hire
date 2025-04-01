@@ -1,8 +1,8 @@
-import CommunityDetails from "@/app/components/communityDetails";
+import ConnectorDetails from "@/app/components/connectorDetails";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Community() {
+export default function Connector() {
   return (
     <div className="community">
       <Link className="community__back" href="/" prefetch={true}>
@@ -16,7 +16,7 @@ export default function Community() {
         <div>Latest communities</div>
       </div>
 
-      <CommunityDetails />
+      <ConnectorDetails />
 
 
       

@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useState } from "react";
 import CommunityRatings from "./communityRatings";
 import ConnectorCard from "./connectorCard";
+import ContactInfoModal from "./contactInfoModal";
 
 export default function CommunityDetails() {
   const [subscribed, setSubscribed] = useState(false);
   const [save, setSave] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -66,7 +68,9 @@ export default function CommunityDetails() {
             </div>
 
             {subscribed && (
-              <button className="community__card__contact">Contact</button>
+              <button className="community__card__contact"
+              onClick={() => setOpen(true)}
+              >Contact</button>
             )}
           </div>
 
@@ -218,6 +222,9 @@ export default function CommunityDetails() {
           />
         </>
       )}
+
+      <ContactInfoModal open={open} setOpen={setOpen} />
+      
     </>
   );
 }

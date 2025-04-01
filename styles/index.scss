@@ -24,12 +24,16 @@
 @import "components/connectorCard";
 @import "components/ratings";
 @import "components/reviewCard";
+@import "components/contactInfoModal";
+@import "components/manageNetworkTable";
 
 
 
 @import "pages/auth";
 @import "pages/home";
 @import "pages/user/community";
+@import "pages/user/category";
+@import "pages/user/manageNetwork";
 
 
 
