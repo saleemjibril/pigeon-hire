@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ConnectorCard({verified, title, subtitle, members}) {
+export default function ConnectorCard({type, verified, title, subtitle, members}) {
   return (
-    <Link href="/user/community" className="connector-card">
+    <Link href={type === "community" ? "/user/community" : "/user/connector"} className="connector-card">
       <div className="connector-card__user">
         <div className="connector-card__image"></div>
         <div>

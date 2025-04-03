@@ -13,7 +13,7 @@ export default function Connector() {
       <div className="community__navigation">
         <div>Home</div>
         <Image src={"/assets/icons/navigation.svg"} width={12} height={12} alt="" />
-        <div>Latest communities</div>
+        <div>Latest connector</div>
       </div>
 
       <ConnectorDetails />

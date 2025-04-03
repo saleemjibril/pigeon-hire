@@ -41,6 +41,11 @@
             gap: 8px;
             color: #8D8D8D;
         }
+
+        &__item-active {
+            background: #FFF;
+            color: #000;
+        }
     }
 
     &__plan {

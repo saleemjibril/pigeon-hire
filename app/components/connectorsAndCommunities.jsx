@@ -27,11 +27,13 @@ export default function ConnectorsAndCommunities() {
 
       {tab === "connectors" &&  <>
       <ConnectorCard
+          type="connector"
         verified={true}
         title={"Fola Agoro"}
         subtitle={"Senior buyer at Coca-Cola"}
       />
       <ConnectorCard
+          type="connector"
         verified={true}
         title={"Fola Agoro"}
         subtitle={"Senior buyer at Coca-Cola"}
@@ -41,6 +43,7 @@ export default function ConnectorsAndCommunities() {
      {tab === "communities" && (
         <>
           <ConnectorCard
+          type="community"
             verified={false}
             title={"Startup & Entrepreneurship Hub"}
             subtitle={
@@ -49,6 +52,7 @@ export default function ConnectorsAndCommunities() {
             members={"500"}
           />
           <ConnectorCard
+          type="community"
             verified={true}
             title={"Startup & Entrepreneurship Hub"}
             subtitle={
@@ -57,6 +61,7 @@ export default function ConnectorsAndCommunities() {
             members={"500"}
           />
           <ConnectorCard
+          type="community"
             verified={false}
             title={"Startup & Entrepreneurship Hub"}
             subtitle={
@@ -70,16 +75,19 @@ export default function ConnectorsAndCommunities() {
       <div className="connectors-and-communities__title">All</div>
      {tab === "connectors" &&  <>
       <ConnectorCard
+          type="connector"
         verified={false}
         title={"Fola Agoro"}
         subtitle={"Senior buyer at Coca-Cola"}
       />
       <ConnectorCard
+          type="connector"
         verified={false}
         title={"Fola Agoro"}
         subtitle={"Senior buyer at Coca-Cola"}
       />
       <ConnectorCard
+          type="connector"
         verified={true}
         title={"Fola Agoro"}
         subtitle={"Senior buyer at Coca-Cola"}
@@ -89,6 +97,7 @@ export default function ConnectorsAndCommunities() {
       {tab === "communities" && (
         <>
           <ConnectorCard
+          type="community"
             verified={true}
             title={"Startup & Entrepreneurship Hub"}
             subtitle={
@@ -97,6 +106,7 @@ export default function ConnectorsAndCommunities() {
             members={"500"}
           />
           <ConnectorCard
+          type="community"
             verified={false}
             title={"Startup & Entrepreneurship Hub"}
             subtitle={
@@ -105,6 +115,7 @@ export default function ConnectorsAndCommunities() {
             members={"500"}
           />
           <ConnectorCard
+          type="community"
             verified={false}
             title={"Startup & Entrepreneurship Hub"}
             subtitle={
