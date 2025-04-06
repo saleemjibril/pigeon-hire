@@ -1,4 +1,5 @@
 import ConnectorDetails from "@/app/components/connectorDetails";
+import NavigationDirectory from "@/app/components/navigationDirectory";
 import Image from "next/image";
 import Link from "next/link";
 
