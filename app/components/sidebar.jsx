@@ -4,6 +4,7 @@ import SearchIcon from "./searchIcon";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import NetworkIcon from "@/public/assets/icons/network";
+import LeadsIcon from "@/public/assets/icons/leads";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -30,15 +31,11 @@ export default function Sidebar() {
           <NetworkIcon color={pathname?.includes("manage-network") && "#000"} />
           Manage Network
         </Link>
-        <div className="sidebar__nav__item">
-          <Image
-            alt=""
-            width={24}
-            height={24}
-            src={"/assets/icons/leads.svg"}
-          />
+        <Link className={pathname?.includes("leads") ? "sidebar__nav__item sidebar__nav__item-active" : "sidebar__nav__item"} href="/user/leads" prefetch={true}>
+        <LeadsIcon color={pathname?.includes("leads") && "#000"} />
+
           Leads
-        </div>
+        </Link>
         <div className="sidebar__nav__item">
           <Image
             alt=""
