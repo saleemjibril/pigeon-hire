@@ -1,0 +1,58 @@
+.edit-network-details {
+    width: 100%;
+    max-width: 921px;
+    &__banner {
+        width: 100%;
+        height: 136px;
+        background: #FAFAFA;
+        margin-bottom: 16px;
+
+        &-button {
+            width: 100%;
+            font-weight: 600;
+            color: #1C871B;
+            text-align: center;
+        }
+
+    }
+    & > form {
+        & > input, & > select {
+            @extend %primary-input;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            max-width: 100%;
+        }
+        & > textarea {
+            @extend %primary-input;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            padding-top: 16px;
+            height: 134px;
+            max-width: 100%;
+        }
+
+        & > button {
+            @extend %primary-button;
+            max-width: 429px;
+            margin: auto;
+            margin-top: 40px;
+        }
+    
+
+    }
+    &__input-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        max-width: 100%;
+
+         & > div {
+            & > select {
+                @extend %primary-input;
+                border-radius: 4px;
+                margin-bottom: 24px;
+            }
+         }
+    }
+
+}

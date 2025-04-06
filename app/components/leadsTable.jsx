@@ -5,7 +5,7 @@ import { Menu, MenuItem, Select } from "@mui/material";
 import Link from "next/link";
 import DeleteModal from "./deleteModal";
 
-export default function ManageNetworkTable() {
+export default function LeadsTable() {
   const [userType, setUserType] = useState("communities");
   const [anchorElFour, setAnchorElFour] = useState(null);
   const [open, setOpen] = useState(null);
@@ -47,9 +47,9 @@ export default function ManageNetworkTable() {
             <tr className="">
               <th>Date</th>
               <th>Community name</th>
+              <th>Contact</th>
               <th>Category</th>
-              <th>Total profile view</th>
-              <th>Contact clicks</th>
+              <th>Contacted</th>
               <th>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -64,9 +64,69 @@ export default function ManageNetworkTable() {
             <tr>
               <td>12/03/2025</td>
               <td>Startup entrepreneurship hub</td>
+              <td>ololadegrace.ot@gmail.com</td>
               <td>Business</td>
-              <td>100</td>
-              <td>56</td>
+              <td></td>
+              <td onClick={handleClickFour}>
+                <Image
+                  src={"/assets/icons/more.svg"}
+                  width={16}
+                  height={16}
+                  alt=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>12/03/2025</td>
+              <td>Startup entrepreneurship hub</td>
+              <td>ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
+              <td onClick={handleClickFour}>
+                <Image
+                  src={"/assets/icons/more.svg"}
+                  width={16}
+                  height={16}
+                  alt=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>12/03/2025</td>
+              <td>Startup entrepreneurship hub</td>
+              <td>ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
+              <td onClick={handleClickFour}>
+                <Image
+                  src={"/assets/icons/more.svg"}
+                  width={16}
+                  height={16}
+                  alt=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>12/03/2025</td>
+              <td>Startup entrepreneurship hub</td>
+              <td>ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
+              <td onClick={handleClickFour}>
+                <Image
+                  src={"/assets/icons/more.svg"}
+                  width={16}
+                  height={16}
+                  alt=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>12/03/2025</td>
+              <td>Startup entrepreneurship hub</td>
+              <td>ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
               <td onClick={handleClickFour}>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -77,85 +137,8 @@ export default function ManageNetworkTable() {
               </td>
             </tr>
 
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>Business</td>
-              <td>100</td>
-              <td>56</td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>Business</td>
-              <td>100</td>
-              <td>56</td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>Business</td>
-              <td>100</td>
-              <td>56</td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>Business</td>
-              <td>100</td>
-              <td>56</td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>Business</td>
-              <td>100</td>
-              <td>56</td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
+          
+          
 
             <Menu
               id="basic-menu"
@@ -234,10 +217,12 @@ export default function ManageNetworkTable() {
           <thead className="bg-[#F5F5F5]">
             <tr className="">
               <th>Date</th>
-              <th>Name</th>
-              <th>Category</th>
+              <th>Connector name
+              </th>
               <th>Role</th>
-              <th>Contact clicks</th>
+              <th>Contact</th>
+              <th>Category</th>
+              <th>Contacted</th>
               <th>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -252,9 +237,10 @@ export default function ManageNetworkTable() {
             <tr>
               <td>12/03/2025</td>
               <td>Fola Agoro</td>
-              <td>Business</td>
               <td>Senior buyer at coca-cola</td>
-              <td>56</td>
+              <td>Ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
               <td onClick={handleClickFour}>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -264,13 +250,13 @@ export default function ManageNetworkTable() {
                 />
               </td>
             </tr>
-
             <tr>
               <td>12/03/2025</td>
               <td>Fola Agoro</td>
-              <td>Business</td>
               <td>Senior buyer at coca-cola</td>
-              <td>56</td>
+              <td>Ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
               <td onClick={handleClickFour}>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -280,13 +266,13 @@ export default function ManageNetworkTable() {
                 />
               </td>
             </tr>
-
             <tr>
               <td>12/03/2025</td>
               <td>Fola Agoro</td>
-              <td>Business</td>
               <td>Senior buyer at coca-cola</td>
-              <td>56</td>
+              <td>Ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
               <td onClick={handleClickFour}>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -296,13 +282,13 @@ export default function ManageNetworkTable() {
                 />
               </td>
             </tr>
-
             <tr>
               <td>12/03/2025</td>
               <td>Fola Agoro</td>
-              <td>Business</td>
               <td>Senior buyer at coca-cola</td>
-              <td>56</td>
+              <td>Ololadegrace.ot@gmail.com</td>
+              <td>Business</td>
+              <td></td>
               <td onClick={handleClickFour}>
                 <Image
                   src={"/assets/icons/more.svg"}
@@ -313,22 +299,8 @@ export default function ManageNetworkTable() {
               </td>
             </tr>
 
-            <tr>
-              <td>12/03/2025</td>
-              <td>Fola Agoro</td>
-              <td>Business</td>
-              <td>Senior buyer at coca-cola</td>
-              <td>56</td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-
+      
+        
             <Menu
               id="basic-menu"
               anchorEl={anchorElFour}

@@ -10,11 +10,20 @@ export default function Connector() {
         Back
       </Link>
 
-      <div className="community__navigation">
-        <div>Home</div>
-        <Image src={"/assets/icons/navigation.svg"} width={12} height={12} alt="" />
-        <div>Latest connector</div>
-      </div>
+      
+        <NavigationDirectory
+              links={
+                  [
+                      {
+                          name: "Home",
+                          link: "/"
+                      },
+                      {
+                          name: "Latest connector",
+                      }
+                  ]
+              }
+              />
 
       <ConnectorDetails />
 
