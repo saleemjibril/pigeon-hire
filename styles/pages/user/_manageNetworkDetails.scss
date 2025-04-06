@@ -11,6 +11,7 @@
         & >:nth-child(even) {
             @extend %title-18;
             font-weight: 500;
+            line-height: 140%;
         }
 
         &__socials {
