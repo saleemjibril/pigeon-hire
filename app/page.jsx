@@ -3,6 +3,7 @@ import LandingHeader from "./components/landingHeader";
 import Footer from "./components/footer";
 import Connect from "./components/connect";
 import Socials from "./components/socials";
+import Link from "next/link";
 
 export async function generateMetadata() {
   return {
@@ -21,8 +22,8 @@ export default function Home() {
           Reach your Target Audience, Right Where they Engage.
         </div>
         <div className="landing__hero__button-group">
-          <button>Sign Up</button>
-          <button>Browse Networks</button>
+          <Link href="/register" prefetch={true}>Sign Up</Link>
+          <Link href="/user" prefetch={true}>Browse Networks</Link>
         </div>
 
         <Image

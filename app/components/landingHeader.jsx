@@ -29,8 +29,8 @@ export default function LandingHeader({logo}) {
           "landing-header__active" : ""}>Networks</Link>
       </nav>
       <div className="landing-header__button-group">
-        <button>Login</button>
-        <button>Sign Up for free</button>
+        <Link href="/login" prefetch={true}>Login</Link>
+        <Link href="/register" prefetch={true}>Sign Up for free</Link>
       </div>
     </header>
   );

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Connect() {
     return (
          <div className="landing__connect">
@@ -11,8 +13,8 @@ export default function Connect() {
                   contacts, expanding your reach and growing your network.
                 </div>
                 <div className="landing__hero__button-group" style={{marginBottom: "0"}}>
-                  <button>Sign Up</button>
-                  <button>Browse Networks</button>
+                <Link href="/register" prefetch={true}>Sign Up</Link>
+          <Link href="/user" prefetch={true}>Browse Networks</Link>
                 </div>
                 </div>
               </div>
