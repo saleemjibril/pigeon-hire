@@ -1,0 +1,50 @@
+.settings {
+    display: grid;
+    grid-template-columns: 1fr 1.55fr;
+    gap: 24px;
+    align-items: start;
+    &__navigation {
+        border: 1px solid #E5E5E5;
+        padding: 20px;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 537px;
+
+        &__card {
+            padding: 15px 12px;
+            border: 1px solid #E5E5E5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            & > div {
+                width: 100%;
+            }
+
+            &__title {
+                font-weight: 500;
+                margin-bottom: 4px;
+            }
+
+            &__subtitle {
+                @extend %title-14;
+                color: #8D8D8D;
+            }
+        }
+
+        &__card-active {
+            border-color: $secondary-color;
+        }
+    }
+
+
+    &__inner {
+        border: 1px solid #E5E5E5;
+        border-radius: 24px;
+        padding: 24px;
+
+    }
+}

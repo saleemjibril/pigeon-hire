@@ -1,0 +1,44 @@
+.landing-header {
+    width: 100%;
+    max-width: 1352px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 114px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > nav {
+        @extend %title-18;
+        font-weight: 500;
+        color: #8D8D8D;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    &__button-group {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+
+        & >:first-child {
+            @extend %title-24;
+            font-weight: 500;
+            color: $secondary-color;
+            background: none;
+            border: none;
+            text-decoration: underline;
+        }
+        & >:last-child {
+            @extend %primary-button;
+            max-width: 201px;
+            height: 48px;
+            padding: 0 33px;
+        }
+    }
+
+    &__active {
+        color: $secondary-color;
+    }
+}

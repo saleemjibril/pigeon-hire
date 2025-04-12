@@ -1,11 +1,18 @@
+"use client"
 import Image from "next/image";
+import FiltersSidebar from "./filtersSidebar";
+import { useState } from "react";
 
 export default function Filters() {
+      const [open, setOpen] = useState(false)
+  
   return (
     <div className="filters">
         <div className="filters__inner">
 
-      <div className="filters__all">
+      <div className="filters__all"
+      onClick={() => setOpen(true)}
+      >
         <Image
           alt=""
           width={16}
@@ -65,6 +72,8 @@ export default function Filters() {
       <div className="filters__item">Connectors</div>
       <div className="filters__item">Connectors</div>
         </div>
+
+        <FiltersSidebar open={open} setOpen={setOpen} />
     </div>
   );
 }

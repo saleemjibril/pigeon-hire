@@ -51,6 +51,14 @@
             margin-top: 40px;
         }
     
+        & > a {
+            & > button {
+                @extend %primary-button;
+                max-width: 429px;
+                margin: auto;
+                margin-top: 40px;
+            }
+        }
 
     }
     &__input-grid {
@@ -69,9 +77,10 @@
     }
 
     &__file {
-        display: grid;
+        display: flex;
         gap: 24px;
         align-items: center;
+        margin-bottom: 12px;
 
 
         &__group {
@@ -82,13 +91,33 @@
             gap: 32px;
             display: flex;
             align-items: center;
+            background: #FAFAFA;
+
             
             & > button {
                 @extend %title-14;
                 width: 113px;
             height: 40px;
+            border: 1.04px solid #31A653;
+            border-radius: 8px;
+            background: #FFF;
             }
 
         }
+
+        & > button {
+            width: 124px;
+            height: 66px;
+            background: #31A653;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 16.99px;
+            color: #FFFFFF;
+        }
+    }
+
+    &__file-info {
+        color: #667085;
     }
 }

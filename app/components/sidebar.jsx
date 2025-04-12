@@ -4,10 +4,15 @@ import SearchIcon from "./searchIcon";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import NetworkIcon from "@/public/assets/icons/network";
+import UpgradeModal from "./upgradePlanModal";
+import { useState } from "react";
+import UpgradeModalPay from "./upgradePlanModalPay";
 import LeadsIcon from "@/public/assets/icons/leads";
+import SettingsIcon from "@/public/assets/icons/settings";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState("");
 
   console.log("pathname", pathname);
   
@@ -36,15 +41,11 @@ export default function Sidebar() {
 
           Leads
         </Link>
-        <div className="sidebar__nav__item">
-          <Image
-            alt=""
-            width={24}
-            height={24}
-            src={"/assets/icons/settings.svg"}
-          />
+        <Link className={pathname?.includes("settings") ? "sidebar__nav__item sidebar__nav__item-active" : "sidebar__nav__item"} href="/user/settings/contact-info" prefetch={true}>
+        <SettingsIcon color={pathname?.includes("settings") && "#000"} />
+          
           Settings
-        </div>
+        </Link>
         <div className="sidebar__nav__item">
           <Image
             alt=""
@@ -62,7 +63,9 @@ export default function Sidebar() {
 
         <div className="sidebar__plan__inner__title">Free plan</div>
         <div className="sidebar__plan__inner__line"></div>
-        <button>
+        <button
+        onClick={() => setOpen(true)}
+        >
           <Image
             alt=""
             width={24}
@@ -83,6 +86,8 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
+
+      <UpgradeModal open={open} setOpen={setOpen} />
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.search-results {
+    &__not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 32px;
+        margin-top: 36px;
+
+        & > img {
+            margin-bottom: 28px;
+        }
+
+        &__title {
+            @extend %title-18;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        &__subtitle {
+            color: #8D8D8D;
+        }
+    }
+
+    &__like {
+        &__title {
+            font-weight: 500;
+        margin-bottom: 16px;
+        }
+    }
+}

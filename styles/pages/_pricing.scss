@@ -1,0 +1,96 @@
+.pricing {
+  &__inner {
+    max-width: 1351px;
+    padding: 0 20px;
+    margin: 0 auto;
+
+    &__title {
+      @extend %title-56;
+      font-weight: 600;
+      margin-bottom: 64px;
+      width: 100%;
+      max-width: 20ch;
+      line-height: 140%;
+      margin-bottom: 64px;
+    }
+
+    & > select {
+      border: 1px solid #e5e5e5;
+      border-radius: 24px;
+      width: 205px;
+      height: 48px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 24px;
+
+        &__card {
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #E5E5E5;
+
+            &__title {
+                @extend %title-24;
+                font-weight: 400;
+                margin-bottom: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            &__title-group {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+                margin-bottom: 24px;
+
+                & >:first-child {
+                    @extend %title-32;
+                    font-weight: 600;
+                }
+                & >:last-child {
+                    @extend %title-18;
+                    font-weight: 500;
+                }
+            }
+
+            &__subtitle {
+                line-height: 140%;
+                margin-bottom: 32px;
+            }
+
+            & > button {
+                @extend %primary-button;
+                margin-bottom: 32px;
+            }
+
+            &__features-title {
+                @extend %title-18;
+                margin-bottom: 16px;
+                color: #8D8D8D;
+            }
+
+            &__features-grid {
+                display: grid;
+                grid-template-columns: 24px auto;
+                gap: 24px 16px;
+            }
+        }
+
+       
+        & >:nth-child(2) {
+            background: #13100A;
+            color: #FFF;
+
+        }
+    }
+  }
+}

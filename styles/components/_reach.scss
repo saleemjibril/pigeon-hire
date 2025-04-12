@@ -1,0 +1,36 @@
+.reach {
+    background: #FFF;
+    padding-bottom: 176px;
+    &__inner {
+        width: 100%;
+        max-width: 926px;
+        margin: 0 auto;
+        padding: 0 20px;
+        &__title {
+            @extend %title-56;
+            font-weight: 600;
+            margin-bottom: 42px;
+            text-align: center;
+            padding: 64px 0;
+        }
+        & > form {
+            & > textarea {
+                width: 100%;
+                border: 1px solid #e5e5e5;
+                height: 302px;
+                border-radius: 8px;
+                padding: 16px 24px;
+                margin-bottom: 30px;
+            }
+
+            & > button {
+                @extend %primary-button;
+                max-width: 100%;
+                height: 73px;
+                border-radius: 48px;
+            }
+        }
+    }
+
+
+}

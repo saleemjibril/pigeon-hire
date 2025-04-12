@@ -1,0 +1,135 @@
+.upgrade-plan-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #00000053;
+    
+        &__inner {
+            width: 100%;
+            max-width: 467px;
+            height: 459px;
+            height: fit-content;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #FFF;
+            padding: 32px;
+
+            &__title {
+                @extend %title-24;
+                font-weight: 600;
+                margin-bottom: 24px;
+            }
+
+            & > select {
+                border: 1px solid #E5E5E5;
+                border-radius: 24px;
+                width: 205px;
+                height: 42px;
+                margin-bottom: 16px;
+            }
+
+            &__card {
+                width: 100%;
+                border: 1px solid #E5E5E5;
+                border-radius: 8px;
+                padding: 10px;
+                margin-bottom: 16px;
+                cursor: pointer;
+
+                &__title-group {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    @extend %title-12;
+                    font-weight: 500;
+                    margin-bottom: 16px;
+
+                    & >:last-child {
+                        color: #8D8D8D;
+                        font-weight: 400;
+                    }
+                }
+
+                &__price-group {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    @extend %title-24;
+                    font-weight: 600;
+                }
+            }
+
+            &__title-group {
+                @extend %title-18;
+                width: 100%;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+
+            &__plan-card {
+                width: 100%;
+                border: 1px solid #E5E5E5;
+                border-radius: 8px;
+                padding: 10px;
+                margin-bottom: 24px;
+
+                &__title-group {
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 16px;
+
+                    & >:first-child {
+                        @extend %title-12;
+                    }
+                }
+
+                
+                
+                & > li {
+                        font-size: 10px;
+                        margin-bottom: 4px;
+                }
+            }
+
+            &__button-group {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                & > button {
+                    @extend %title-12;
+                    font-weight: 600;
+                    width: 150px;
+                    height: 40px;
+                    border-radius: 8px;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    color: #FFF;
+                }
+                
+                & >:first-child {
+                    background: #07969E;
+                }
+                & >:last-child {
+                    background: #635BFF;
+                }
+            }
+        }
+    
+}

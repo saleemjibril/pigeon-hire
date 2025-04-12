@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ListCommunityDetails() {
-  const [tab, setTab] = useState("image");
+  const [tab, setTab] = useState("info");
   return (
     <>
       <div className="list-community__tabs">
@@ -81,7 +82,7 @@ export default function ListCommunityDetails() {
           <label htmlFor="">Post Frequency:</label>
           <input type="text" placeholder="Number of posting days/week" />
 
-          <button>Save Changes</button>
+          <button>Next</button>
         </form>
       )}
 
@@ -100,6 +101,52 @@ export default function ListCommunityDetails() {
           <div className="list-community__file-info">
             Please upload .jepg, .jpg, .png or .pdf, size less than 100KB
           </div>
+        </form>
+      )}
+      
+      {tab === "additional-info" && (
+        <form>
+          <label htmlFor="">Types of content shared:</label>
+          <select name="" id="">
+            <option value="">select type</option>
+          </select>
+          <label htmlFor="">Key Topics & Interests:</label>
+          <select name="" id="">
+            <option value="">select type</option>
+          </select>
+          <label htmlFor="">Platforms Used:</label>
+          <select name="" id="">
+            <option value="">select your preferred platform</option>
+          </select>
+          <label htmlFor="">Types of Interactions:</label>
+          <select name="" id="">
+            <option value="">select interaction type</option>
+          </select>
+          <label htmlFor="">Unique selling points:</label>
+         <input type="text" placeholder="What are your community selling points?" />
+          <label htmlFor="">Special recognition or award:</label>
+         <input type="text" placeholder="enter special recognition or award received" />
+          <label htmlFor="">Add additional services offered:</label>
+         <textarea name="" id="" placeholder="Include any additional service offered"></textarea>
+
+         <button>Next</button>
+        </form>
+      )}
+
+{tab === "contact-info" && (
+        <form>
+          <label htmlFor="">Access Requirements:</label>
+          <select name="" id="">
+            <option value="">select access requirement</option>
+          </select>
+          <label htmlFor="">Link to community page or website:</label>
+          <input type="text" placeholder="enter link to your community or website" />
+          <label htmlFor="">Contact:</label>
+          <input type="text" placeholder="enter your contact details" />
+          
+          <Link href={"/user/list-connector/preview"}>
+         <button>Preview</button>
+         </Link>
         </form>
       )}
     </>

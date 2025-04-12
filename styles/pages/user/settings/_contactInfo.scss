@@ -1,0 +1,84 @@
+.settings-contact {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+    }
+    &__grid {
+        @extend  %title-14;
+        display: grid;
+        grid-template-columns: 114px auto;
+        gap: 16px;
+        margin-bottom: 41px;
+
+        & >:nth-child(odd) {
+            color: #8D8D8D;
+        }
+        & >:nth-child(even) {
+            font-weight: 500;
+        }
+    }
+
+    &__deactivate {
+        @extend %title-14;
+        width: 100%;
+        text-decoration: underline;
+        text-align: right;
+        font-weight: 500;
+        color: #FA4D56;
+        cursor: pointer;
+    }
+
+    & > form {
+        & > input, & > select {
+            @extend %primary-input;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            max-width: 100%;
+        }
+        & > textarea {
+            @extend %primary-input;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            padding-top: 16px;
+            height: 134px;
+            max-width: 100%;
+        }
+
+        & > button {
+            @extend %primary-button;
+            max-width: 429px;
+            margin: auto;
+            margin-top: 40px;
+        }
+    
+
+    }
+
+    &__button-group {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: end;
+        & > button {
+            width: 180px;
+            height: 42px;
+            font-weight: 600;
+        }
+        
+        & >:first-child {
+            border: 1px solid #E5E5E5;
+        border-radius: 4px;
+         color: #8D8D8D;
+         background: none;
+        }
+        & >:last-child {
+            background: $secondary-color;
+            border: none;
+            border-radius: 4px;
+            color: #FFF;
+        }
+    }
+}

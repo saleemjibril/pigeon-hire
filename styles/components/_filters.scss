@@ -24,6 +24,7 @@
     padding: 8px 12px;
     border-radius: 16px;
     white-space: nowrap;
+    cursor: pointer;
   }
   &__item {
     @extend %title-14;
@@ -34,5 +35,6 @@
     padding: 8px 12px;
     border-radius: 16px;
     white-space: nowrap;
+    cursor: pointer;
   }
 }

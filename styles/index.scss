@@ -27,11 +27,21 @@
 @import "components/contactInfoModal";
 @import "components/manageNetworkTable";
 @import "components/deleteModal";
+@import "components/filterSidebar";
+@import "components/searchResults";
+@import "components/deactivationModal";
+@import "components/upgradePlanModal";
+@import "components/landingHeader";
+@import "components/footer";
+@import "components/reach";
 
 
 
+@import "pages/landing";
+@import "pages/about";
 @import "pages/auth";
 @import "pages/home";
+@import "pages/pricing";
 @import "pages/user/community";
 @import "pages/user/category";
 @import "pages/user/manageNetwork";
@@ -39,6 +49,12 @@
 @import "pages/user/editNetworkDetails";
 @import "pages/user/leads";
 @import "pages/user/listCommunity";
+@import "pages/user/listPreview";
+@import "pages/user/allFilters";
+@import "pages/user/settings/layout";
+@import "pages/user/settings/contactInfo";
+@import "pages/user/settings/password";
+@import "pages/user/settings/notifications";
 
 
 

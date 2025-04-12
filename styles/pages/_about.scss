@@ -1,0 +1,202 @@
+.about {
+    background: #13100A;
+    &__title {
+        @extend %title-56;
+        font-weight: 600;
+        line-height: 140%;
+        margin-bottom: 8px;
+        text-align: center;
+        color: #FFF;
+        margin-top: 80px;
+    }
+    &__subtitle {
+        @extend %title-24;
+        font-weight: 400;
+        margin-bottom: 42px;
+        text-align: center;
+        color: #FFF;
+        margin-bottom: 128px;
+    }
+
+    &__hero {
+        position: relative;
+        background: #FFF;
+        padding-top: 238px;
+        padding-bottom: 64px;
+        &__cards {
+            width: 100%;
+            max-width: 1163px;
+            padding: 0 20px;
+            position: absolute;
+            left: 50%;
+            top: -40px;
+            transform: translate(-50%);
+            width: 100%;
+            max-width: 1163px;
+            padding: 0 60px;
+            margin: 0 auto;
+            display: flex;
+            gap: 32px;
+            margin-bottom: 64px;
+            margin-top: -40px;
+
+            & > img {
+                width: 100%;
+                height: auto;
+                border-radius: 16px;
+            }
+        }
+
+        &__title {
+            @extend %title-48;
+            width: 100%;
+            max-width: 1352px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-weight: 600;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        &__subtitle {
+            @extend %title-18;
+            max-width: 1352px;
+            padding: 0 20px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #8D8D8D;
+            line-height: 140%;
+            gap: 20px;
+
+            & >:first-child  {
+                width: 100%;
+                max-width: 58ch;
+            }
+            & >:last-child  {
+                width: 100%;
+                max-width: 47.5ch;
+            }
+        }
+    }
+
+    &__story {
+        background: #FAFAFA;
+        padding: 64px 0;
+
+        &__title {
+            @extend %title-48;
+            font-weight: 600;
+            color: $secondary-color;
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        &__subtitle {
+            @extend %title-24;
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            font-weight: 400;
+            text-align: center;
+            line-height: 140%;
+            margin-bottom: 24px;
+        }
+
+        &__user {
+            & > :first-child {
+                @extend %title-32;
+                font-weight: 600;
+                line-height: 140%;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+            & > :last-child {
+                @extend %title-18;
+                font-weight: 400;
+                line-height: 140%;
+                color: #8D8D8D;
+                text-align: center;
+
+            }
+        }
+    }
+
+    &__we {
+        background: #FFF;
+        padding: 64px 0;
+        
+        &__inner {
+            width: 100%;
+            max-width: 1352px;
+            padding: 0 20px;
+            display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        margin: 0 auto;
+
+        & > img {
+            width: 100%;
+            max-width: 733px;
+            height: auto;
+            border-radius: 16px;
+        }
+
+        & > div {
+            @extend %title-24;
+            width: 100%;
+            max-width: 34ch;
+            font-weight: 400;
+            line-height: 140%;
+        }
+        }
+    }
+
+    &__value {
+        background: #FFF;
+        padding-bottom: 64px;
+       &__inner {
+        width: 100%;
+        max-width: 1165px;
+        padding: 0 20px;
+        margin: 0 auto;
+        &__title {
+            @extend %title-48;
+            font-weight: 600;
+            margin-bottom: 42px;
+            text-align: center;
+        }
+
+        &__cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+
+            &__card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                & > img {
+                    margin-bottom: 24px;
+                }
+
+                &__title {
+                    @extend %title-24;
+                    font-weight: 600;
+                    margin-bottom: 16px;
+                    text-align: center;
+                }
+                &__subtitle {
+                    @extend %title-18;
+                    color: #8D8D8D;
+                    line-height: 140%;
+                    text-align: center;
+                }
+            }
+        }
+       }
+    }
+}

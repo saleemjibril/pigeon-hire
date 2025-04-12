@@ -17,8 +17,8 @@ export default function ListNetworkButton() {
       {open && 
         <>
         <div className="header__title-group__list-network__dropdown">
-        <Link href={"/user/list-network"} prefetch={true}>List a community</Link>
-        <Link href={"/user/list-network"} prefetch={true}>List as a connector</Link>
+        <Link href={"/user/list-community"} prefetch={true}>List a community</Link>
+        <Link href={"/user/list-connector"} prefetch={true}>List as a connector</Link>
       </div>
       <div className="header__title-group__list-network__dropdown-cover"
       onClick={() => setOpen(false)}
