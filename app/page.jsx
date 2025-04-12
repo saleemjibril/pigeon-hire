@@ -2,6 +2,7 @@ import Image from "next/image";
 import LandingHeader from "./components/landingHeader";
 import Footer from "./components/footer";
 import Connect from "./components/connect";
+import Socials from "./components/socials";
 
 export async function generateMetadata() {
   return {
@@ -32,49 +33,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="landing__social-banner">
-        <div className="landing__social-banner__title">
-          Discover thousands of Communities, Connectors and Businesses
-        </div>
-        <div className="landing__social-banner__group">
-          <Image
-            alt=""
-            width={120}
-            height={48}
-            src={"/assets/icons/slack.svg"}
-          />
-          <Image
-            alt=""
-            width={173}
-            height={48}
-            src={"/assets/icons/instagram.svg"}
-          />
-          <Image
-            alt=""
-            width={170}
-            height={48}
-            src={"/assets/icons/facebook.svg"}
-          />
-          <Image
-            alt=""
-            width={179}
-            height={48}
-            src={"/assets/icons/whatsapp.svg"}
-          />
-          <Image
-            alt=""
-            width={155}
-            height={48}
-            src={"/assets/icons/linkedin.svg"}
-          />
-          <Image
-            alt=""
-            width={132}
-            height={48}
-            src={"/assets/icons/reddit.svg"}
-          />
-        </div>
-      </div>
+     <Socials />
 
       <div className="landing__steps">
         <div className="landing__steps__title">Get started in 3 steps</div>

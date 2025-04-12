@@ -70,7 +70,8 @@
     background: #FFF9F2;
     padding: 42px 0;
     margin-bottom: 64px;
-
+    overflow: hidden;
+    scroll-behavior: smooth;
     &__title {
         @extend %title-24;
         font-weight: 600;
@@ -83,6 +84,16 @@
         align-items: center;
         justify-content: center;
         gap: 42px;
+        animation: marqueeXLeft 45s linear infinite;
+
+        @keyframes marqueeXLeft {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-650px * var(--item-count) - (20px * var(--item-count))));
+            }
+          }
     }
 
 }
@@ -257,6 +268,7 @@
     max-width: 1352px;
     padding: 0 20px;
     margin: 0 auto;
+    padding-top: 64px;
     &__title {
         @extend %title-48;
         font-weight: 600;
@@ -361,7 +373,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 64px;
     &__inner {
         width: 100%;
         max-width: 1352px;
@@ -393,6 +404,7 @@
 }
 
 &__testimonials {
+    margin-top: 64px;
     margin-bottom: 64px;
     &__title {
         @extend %title-48;
