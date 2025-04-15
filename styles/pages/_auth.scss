@@ -186,7 +186,10 @@ color: #8D8D8D;
   &__illustration {
     width: 100%;
     height: 100%;
-    background: url('/assets/auth_img.jpg');
+    background: url('/assets/auth.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 14px;
   }
 

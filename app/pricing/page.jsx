@@ -1,5 +1,6 @@
 import Image from "next/image";
 import LandingHeader from "../components/landingHeader";
+import Footer from "../components/footer";
 
 export default function Pricing() {
   return (
@@ -210,6 +211,8 @@ savings for a medium-term
         </div>
       </div>
      </div>
+
+     <Footer />
     </div>
   );
 }

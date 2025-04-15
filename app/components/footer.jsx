@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -13,11 +14,11 @@ export default function Footer() {
         />
 
         <nav>
-          <div>About Us</div>
-          <div>Blog</div>
-          <div>Contact Us</div>
-          <div>Pricing</div>
-          <div>Explore Network</div>
+          <Link href={"/about"}>About Us</Link>
+          <Link href={"/blog"}>Blog</Link>
+          <Link href={"/contact"}>Contact Us</Link>
+          <Link href={"/pricing"}>Pricing</Link>
+          <Link href={"/user"}>Explore Network</Link>
         </nav>
 
         <div className="footer__inner__header__socials">

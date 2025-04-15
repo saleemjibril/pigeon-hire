@@ -28,7 +28,7 @@ export default function Sidebar() {
         <SearchIcon />
       </div>
 
-        <input type="text" placeholder="Explore networks" />
+        <div>Explore networks</div>
       </div>
 
       <div className="sidebar__nav">

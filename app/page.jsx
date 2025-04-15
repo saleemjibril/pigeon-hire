@@ -4,6 +4,8 @@ import Footer from "./components/footer";
 import Connect from "./components/connect";
 import Socials from "./components/socials";
 import Link from "next/link";
+import Testimonials from "./components/testimonials";
+import Faq from "./components/faq";
 
 export async function generateMetadata() {
   return {
@@ -19,7 +21,20 @@ export default function Home() {
       <LandingHeader />
       <div className="landing__hero">
         <div className="landing__hero__title">
-          Reach your Target Audience, Right Where they Engage.
+        <Image
+          alt=""
+          width={52}
+          height={52}
+          src={"/assets/icons/bubbles.svg"}
+        />
+<div>          Reach your Target Audience, Right Where they Engage.
+</div>
+          <Image
+          alt=""
+          width={52}
+          height={52}
+          src={"/assets/icons/star.svg"}
+        />
         </div>
         <div className="landing__hero__button-group">
           <Link href="/register" prefetch={true}>Sign Up</Link>
@@ -30,7 +45,7 @@ export default function Home() {
           alt=""
           width={1090}
           height={527}
-          src={"/assets/hero.jpg"}
+          src={"/assets/hero.png"}
         />
       </div>
 
@@ -45,7 +60,7 @@ export default function Home() {
                 alt=""
                 width={240}
                 height={235}
-                src={"/assets/Frame 2087325596.png"}
+                src={"/assets/step1.png"}
                 style={{marginBottom: "-95px"}}
               />
             </div>
@@ -65,7 +80,7 @@ export default function Home() {
                 alt=""
                 width={240}
                 height={240}
-                src={"/assets/Frame 2087325591.png"}
+                src={"/assets/step2.png"}
                 style={{marginBottom: "-96px"}}
               />
             </div>
@@ -84,7 +99,7 @@ export default function Home() {
                 alt=""
                 width={240}
                 height={250}
-                src={"/assets/Frame 2087325591 (1).png"}
+                src={"/assets/step3.png"}
                 style={{marginBottom: "-100px"}}
               />
             </div>
@@ -115,13 +130,13 @@ export default function Home() {
             alt=""
             width={693}
             height={444}
-            src={"/assets/user1.jpg"}
+            src={"/assets/user1.png"}
           />
           <Image
             alt=""
             width={595}
             height={488}
-            src={"/assets/user2.jpg"}
+            src={"/assets/user2.png"}
           />
         </div>
       </div>
@@ -260,252 +275,9 @@ export default function Home() {
 
      <Connect />
 
-      <div className="landing__testimonials">
-        <div className="landing__testimonials__title">User’s Stories</div>
-        <div className="landing__testimonials__inner">
-        <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/arrowLeft.svg"}
-          />
-          <div className="landing__testimonials__inner__cards">
-            <div className="landing__testimonials__inner__cards__card">
-              <div className="landing__testimonials__inner__cards__card__title">
-                <div>Gwala</div>
+      <Testimonials />
 
-                <Image
-                  alt=""
-                  width={32}
-                  height={32}
-                  src={"/assets/icons/quote.svg"}
-                />
-              </div>
-
-              <div className="landing__testimonials__inner__cards__card__subtitle">
-                Our partnership with Pigeonhire during our campus ambassador
-                program was a game-changer. The access to a range of communities
-                and connectors resulted in unprecedented engagement and sales.
-              </div>
-            </div>
-            <div className="landing__testimonials__inner__cards__card">
-              <div className="landing__testimonials__inner__cards__card__title">
-                <div>Alex Klaxic</div>
-
-                <Image
-                  alt=""
-                  width={32}
-                  height={32}
-                  src={"/assets/icons/quote.svg"}
-                />
-              </div>
-
-              <div className="landing__testimonials__inner__cards__card__subtitle">
-                As a community leader, the visibility model has been
-                transformative. We've partnered with businesses that truly
-                resonate with our audience, enhancing both our community's value
-                and our collaboration
-              </div>
-            </div>
-            <div className="landing__testimonials__inner__cards__card">
-              <div className="landing__testimonials__inner__cards__card__title">
-                <div>Gwala</div>
-
-                <Image
-                  alt=""
-                  width={32}
-                  height={32}
-                  src={"/assets/icons/quote.svg"}
-                />
-              </div>
-
-              <div className="landing__testimonials__inner__cards__card__subtitle">
-                Our partnership with Pigeonhire during our campus ambassador
-                program was a game-changer. The access to a range of communities
-                and connectors resulted in unprecedented engagement and sales.
-              </div>
-            </div>
-            <div className="landing__testimonials__inner__cards__card">
-              <div className="landing__testimonials__inner__cards__card__title">
-                <div>Alex Klaxic</div>
-
-                <Image
-                  alt=""
-                  width={32}
-                  height={32}
-                  src={"/assets/icons/quote.svg"}
-                />
-              </div>
-
-              <div className="landing__testimonials__inner__cards__card__subtitle">
-                As a community leader, the visibility model has been
-                transformative. We've partnered with businesses that truly
-                resonate with our audience, enhancing both our community's value
-                and our collaboration
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="landing__faq">
-        <div className="landing__faq__title">
-          Frequently asked questions (FAQ)
-        </div>
-        <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>How can Pigeonhire help my business grow?</div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>What makes Pigeonhire different from other community engagement platforms?</div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>Can I target specific geographic locations or industries in Pigeonhire?
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>How can I list my community on Pigeonhire?
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>Is Pigeonhire suitable for small businesses or startups?
-
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>How does Pigeonhire protect my business's data and privacy?
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>How does the Subscription Work?
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>How can Pigeonhire help my business grow?
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-   <div className="landing__faq__card">
-          <div className="landing__faq__card__title">
-            <div>Is it free to list my community on Pigeonhire?
-
-            </div>
-          <Image
-            alt=""
-            width={32}
-            height={32}
-            src={"/assets/icons/darkPlus.svg"}
-          />
-          </div>
-
-          <div className="landing__faq__card__subtitle">
-
-          </div>
-
-        </div>     
-      </div>
+      <Faq />
 
       <Footer />
     </div>
