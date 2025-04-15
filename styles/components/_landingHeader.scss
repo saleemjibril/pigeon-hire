@@ -32,9 +32,10 @@
         }
         & >:last-child {
             @extend %primary-button;
-            max-width: 201px;
+            width: fit-content;
             height: 48px;
             padding: 0 33px;
+            white-space: nowrap !important;
         }
     }
 
