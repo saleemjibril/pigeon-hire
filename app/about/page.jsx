@@ -16,9 +16,9 @@ export default function About() {
 
       <div className="about__hero">
         <div className="about__hero__cards">
-          <Image alt="" width={353} height={260} src={"/assets/about1.jpg"} />
-          <Image alt="" width={353} height={260} src={"/assets/about2.jpg"} />
-          <Image alt="" width={353} height={260} src={"/assets/about3.jpg"} />
+          <Image alt="" width={353} height={260} src={"/assets/about1.png"} />
+          <Image alt="" width={353} height={260} src={"/assets/about2.png"} />
+          <Image alt="" width={353} height={260} src={"/assets/about3.png"} />
         </div>
 
         <div className="about__hero__title">
@@ -62,7 +62,7 @@ export default function About() {
 
       <div className="about__we">
        <div className="about__we__inner">
-       <Image alt="" width={733} height={512} src={"/assets/aboutwe.jpg"} />
+       <Image alt="" width={733} height={512} src={"/assets/aboutwe.png"} />
 
 <div>
   We aim to revolutionize how businesses and communities interact,

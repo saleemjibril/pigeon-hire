@@ -23,17 +23,19 @@
         background: #FFF;
         padding-top: 238px;
         padding-bottom: 64px;
+        padding-right: 20px;
+        padding-left: 20px;
         &__cards {
             width: 100%;
             max-width: 1163px;
-            padding: 0 20px;
+            // padding: 0 20px;
             position: absolute;
             left: 50%;
             top: -40px;
             transform: translate(-50%);
             width: 100%;
             max-width: 1163px;
-            padding: 0 60px;
+            // padding: 0 60px;
             margin: 0 auto;
             display: flex;
             gap: 32px;
@@ -41,6 +43,7 @@
             margin-top: -40px;
 
             & > img {
+                position: relative;
                 width: 100%;
                 height: auto;
                 border-radius: 16px;
@@ -50,17 +53,15 @@
         &__title {
             @extend %title-48;
             width: 100%;
-            max-width: 1352px;
+            max-width: 1312px;
             margin: 0 auto;
-            padding: 0 20px;
             font-weight: 600;
             margin-bottom: 48px;
             text-align: center;
         }
         &__subtitle {
             @extend %title-18;
-            max-width: 1352px;
-            padding: 0 20px;
+            max-width: 1312px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
