@@ -9,6 +9,12 @@
       max-width: 1352px;
       padding: 0 20px;
       margin: 0 auto;
+
+      &__banner {
+        transform: translateY(100px);
+
+        opacity: 0;
+      }
   
       &__title {
         @extend %title-56;
@@ -60,14 +66,17 @@
         &__span1 {
             // position: relative;
             // background: yellow;
+            transform: translateY(25px);
             // top: 25px;
+            opacity: 0;
             // clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0% 100%);
 
         }
         &__span2 {
             // position: relative;
             // background: yellow;
-            // top: 50px;
+            transform: translateY(50px);
+            opacity: 0;
         }
   
         & >:first-child {
@@ -92,6 +101,9 @@
         margin: 0 auto;
         background: #FFF;
         z-index: 3;
+        transform: translateY(-300px);
+
+        opacity: 0;
   
         & >:first-child {
           @extend %title-18;

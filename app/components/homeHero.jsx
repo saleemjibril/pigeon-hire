@@ -10,29 +10,29 @@ export function HomeHero(params) {
     useLayoutEffect(() => {
         // Your initial settings remain the same
       
-        gsap.set(".landing__hero__inner__button-group", {
-          y: "-300px",
-          opacity: 0,
-        });
-        gsap.set(".landing__hero__inner__banner", {
-          y: "100px",
-          opacity: 0,
-        });
+        // gsap.set(".landing__hero__inner__button-group", {
+        //   y: "-300px",
+        //   opacity: 0,
+        // });
+        // gsap.set(".landing__hero__inner__banner", {
+        //   y: "100px",
+        //   opacity: 0,
+        // });
       
 
-        gsap.set(".landing__hero__inner__title__span1", {
-            display: "block",
-            y: "25px",
-            opacity: 0,
-            // clipPath: "polygon(0 60%, 100% 60%, 100% 100%, 0% 100%)"
-            // Optional: slight vertical offset
-          });
-        gsap.set(".landing__hero__inner__title__span2", {
-            display: "block",
-            y: "50px",
-            opacity: 0
-            // Optional: slight vertical offset
-          });
+        // gsap.set(".landing__hero__inner__title__span1", {
+        //     display: "block",
+        //     y: "25px",
+        //     opacity: 0,
+        //     // clipPath: "polygon(0 60%, 100% 60%, 100% 100%, 0% 100%)"
+        //     // Optional: slight vertical offset
+        //   });
+        // gsap.set(".landing__hero__inner__title__span2", {
+        //     display: "block",
+        //     y: "50px",
+        //     opacity: 0
+        //     // Optional: slight vertical offset
+        //   });
         
         //   // Create a timeline
           
