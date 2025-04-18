@@ -37,7 +37,7 @@ export default function FlippedCards() {
                 src={"/assets/user1.png"}
               />
             </div>
-            <div className="flip-card-back" style={{background: "#8A3668"}}>
+            <div className="flip-card-back" style={{background: "#8A3668", height: "444px"}}>
               <div className="flip-card-back__title">
               Powering Meaningful Connections
                 </div>
