@@ -6,6 +6,8 @@ import Socials from "./components/socials";
 import Link from "next/link";
 import Testimonials from "./components/testimonials";
 import Faq from "./components/faq";
+import FlippedCards from "./components/flippedCards";
+import { HomeHero } from "./components/homeHero";
 
 export async function generateMetadata() {
   return {
@@ -19,35 +21,7 @@ export default function Home() {
   return (
     <div className="landing">
       <LandingHeader />
-      <div className="landing__hero">
-        <div className="landing__hero__title">
-        <Image
-          alt=""
-          width={52}
-          height={52}
-          src={"/assets/icons/bubbles.svg"}
-        />
-<div>          Reach your Target Audience, Right Where they Engage.
-</div>
-          <Image
-          alt=""
-          width={52}
-          height={52}
-          src={"/assets/icons/star.svg"}
-        />
-        </div>
-        <div className="landing__hero__button-group">
-          <Link href="/register" prefetch={true}>Sign Up</Link>
-          <Link href="/user" prefetch={true}>Browse Networks</Link>
-        </div>
-
-        <Image
-          alt=""
-          width={1090}
-          height={527}
-          src={"/assets/hero.png"}
-        />
-      </div>
+     <HomeHero />
 
      <Socials />
 
@@ -115,31 +89,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="landing__users">
-        <div className="landing__users__title-group">
-          <div>What our users look like</div>
-          <div>
-            Our platform helps users discover diverse opportunities for
-            collaborations and partnerships, connecting them to key contacts and
-            enabling impactful engagements outside the platform.
-          </div>
-        </div>
-
-        <div className="landing__users__image-group">
-          <Image
-            alt=""
-            width={693}
-            height={444}
-            src={"/assets/user1.png"}
-          />
-          <Image
-            alt=""
-            width={595}
-            height={488}
-            src={"/assets/user2.png"}
-          />
-        </div>
-      </div>
+      <FlippedCards />
 
       <div className="landing__stats">
         <div className="landing__stats__inner">
@@ -218,7 +168,7 @@ export default function Home() {
               src={"/assets/why2.png"}
             />
           </div>
-          
+          <br />
         </div>
 
         <div className="landing__why__cards-mini">

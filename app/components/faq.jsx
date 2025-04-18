@@ -53,7 +53,7 @@ export default function Faq() {
         Frequently asked questions (FAQ)
       </div>
       {faqs?.map((faq, index) => (
-        <div className="landing__faq__card">
+        <div className="landing__faq__card" key={index}>
           <div
             className="landing__faq__card__title"
             onClick={() => selectedFaq === index ? setSelectedFaq(null) : setSelectedFaq(index)}

@@ -69,9 +69,9 @@ export default function Footer() {
         <div>© 2025 Pigeonhire limited. All Right Reserved.</div>
 
         <div>
-        <div>Privacy Policy</div>
+        <Link href={"/privacy-policy"} prefetch={true}>Privacy Policy</Link>
         <Image alt="" width={8} height={8} src={"/assets/icons/dot.svg"} />
-        <div>Terms & Condition</div>
+        <Link href={"/privacy-policy"} prefetch={true}>Terms & Condition</Link>
         </div>
       </div>
     </div>
