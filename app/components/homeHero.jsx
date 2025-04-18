@@ -71,7 +71,7 @@ export function HomeHero(params) {
           y: "0",
           duration: 1.2,           // Add duration back in
           opacity: 1,
-        }, "-=3.5")
+        }, "-=1.6")
         
     
       }, []);
