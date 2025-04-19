@@ -314,7 +314,6 @@ box-shadow: 0px -2px 12px 0px #1C871B1A inset;
   
           .flip-card {
               width: 100%;
-              height: 100%;
               perspective: 1000px;
               
               &-inner {
@@ -577,6 +576,44 @@ box-shadow: 0px -2px 12px 0px #1C871B1A inset;
               text-align: center;
               margin: 0 auto;
               margin-bottom: 42px;
+          }
+
+          &__button-group {
+            position: relative;
+              width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 48px;
+            gap: 24px;
+            box-shadow: 0px -2px 12px 2px #bcbcbc1a;
+            box-shadow: 0px 2px 12px 2px #bcbcbc1a;
+            margin: 0 auto;
+            background: #FFF;
+           
+            & >:first-child {
+              @extend %title-18;
+              width: 201px;
+              padding: 13px 24px;
+              border: 1px solid $secondary-color;
+              font-weight: 500;
+              border-radius: 24px;
+              background: none;
+              color: $secondary-color;
+              white-space: nowrap;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+      
+              
+            }
+            & >:last-child {
+              @extend %primary-button;
+              max-width: 201px;
+              padding: 13px 24px;
+              white-space: nowrap;
+            }
           }
   
         

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Reach() {
   return (
-    <div className="reach">
+    <div className="reach" id="contact">
       <div className="reach__inner">
         <div className="reach__inner__title">Reach out to us</div>
 

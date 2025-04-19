@@ -1,19 +1,18 @@
 .pricing {
   &__inner {
     max-width: 1351px;
-    padding: 0 20px;
+    padding: 80px 20px 129px 20px;
     margin: 0 auto;
-    padding-bottom: 129px;
 
     &__title {
-      @extend %title-56;
-      font-weight: 600;
-      margin-bottom: 64px;
-      width: 100%;
-      max-width: 20ch;
-      line-height: 140%;
-      margin-bottom: 64px;
-    }
+        @extend %title-56;
+        font-weight: 600;
+        width: 100%;
+        max-width: 20ch;
+        margin-bottom: 64px;
+        line-height: 78px;
+        letter-spacing: -0.02em;
+      }
 
     & > select {
       border: 1px solid #e5e5e5;

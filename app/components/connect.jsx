@@ -12,7 +12,7 @@ export default function Connect() {
                   Join Pigeonhire today to easily access the right communities and key
                   contacts, expanding your reach and growing your network.
                 </div>
-                <div className="landing__hero__inner__button-group">
+                <div className="landing__connect__inner__button-group">
           <Link href="/register" prefetch={true}>Sign Up</Link>
           <Link href="/user" prefetch={true}>Browse Networks</Link>
         </div>

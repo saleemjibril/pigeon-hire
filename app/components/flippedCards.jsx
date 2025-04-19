@@ -27,6 +27,7 @@ export default function FlippedCards() {
           }`}
           onMouseEnter={() => setIsFlipped(1)}
           onMouseLeave={() => setIsFlipped(null)}
+          style={{height: "444px"}}
         >
           <div className="flip-card-inner">
             <div className="flip-card-front">
@@ -53,6 +54,8 @@ export default function FlippedCards() {
           }`}
           onMouseEnter={() => setIsFlipped(2)}
           onMouseLeave={() => setIsFlipped(null)}
+          style={{height: "488px"}}
+
         >
           <div className="flip-card-inner">
             <div className="flip-card-front">

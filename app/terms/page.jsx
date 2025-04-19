@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
 
                 <Image
                     alt=""
-                    src="/assets/blog-banner.png"
+                    src="/assets/terms.png"
                     width={1312}
                     height={491}
                     className="privacy__inner__banner"

@@ -6,17 +6,19 @@ export default function Footer() {
     <div className="footer">
     <div className="footer__inner">
       <div className="footer__inner__header">
-        <Image
+       <Link href={"/"}>
+       <Image
           alt=""
           width={250}
           height={50}
           src={"/assets/icons/logoBlack.svg"}
         />
+       </Link>
 
         <nav>
           <Link href={"/about"}>About Us</Link>
           <Link href={"/blog"}>Blog</Link>
-          <Link href={"/contact"}>Contact Us</Link>
+          <Link href={"/about#contact"}>Contact Us</Link>
           <Link href={"/pricing"}>Pricing</Link>
           <Link href={"/user"}>Explore Network</Link>
         </nav>
@@ -71,7 +73,7 @@ export default function Footer() {
         <div>
         <Link href={"/privacy-policy"} prefetch={true}>Privacy Policy</Link>
         <Image alt="" width={8} height={8} src={"/assets/icons/dot.svg"} />
-        <Link href={"/privacy-policy"} prefetch={true}>Terms & Condition</Link>
+        <Link href={"/terms"} prefetch={true}>Terms & Condition</Link>
         </div>
       </div>
     </div>
