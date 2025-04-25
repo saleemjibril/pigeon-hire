@@ -85,8 +85,9 @@ export default function ListConnectorDetails() {
         
         <label htmlFor="">Special recognition or award:</label>
         <input type="text" placeholder="enter special recognition or award received" />
-        <label htmlFor="">Add additional services offered:</label>
-       <textarea name="" id="" placeholder="Include any additional service offered"></textarea>
+        <label htmlFor="">Add any additional information:</label>
+       <textarea name="" id="" placeholder="List any companies, individuals, or sectors you can connect anyone to—e.g., funders, companies, 
+service providers, or experts in tech, finance, education, health, legal, etc. Be as specific as possible."></textarea>
 
        <button>Next</button>
       </form>

@@ -68,6 +68,34 @@ export default function SettingsNavigation() {
       />
     </Link>
     <Link 
+    className={pathname?.includes("payments") ? "settings__navigation__card settings__navigation__card-active" : "settings__navigation__card"}
+    href={"/user/settings/payments"}
+    >
+      <Image
+        className="search__close"
+        alt=""
+        width={31}
+        height={31}
+        src={"/assets/icons/payments.svg"}
+      />
+      <div>
+        <div className="settings__navigation__card__title">
+        Payments
+        </div>
+        <div className="settings__navigation__card__subtitle">
+        Review payments methods and update card details
+        </div>
+      </div>
+
+      <Image
+        className="search__close"
+        alt=""
+        width={24}
+        height={24}
+        src={"/assets/icons/arrowRight.svg"}
+      />
+    </Link>
+    <Link 
     className={pathname?.includes("notifications") ? "settings__navigation__card settings__navigation__card-active" : "settings__navigation__card"}
     href={"/user/settings/notifications"}
     >

@@ -3,6 +3,8 @@ import Image from "next/image";
 export default function SettingsContact() {
   return (
     <div className="settings-contact">
+        <div className="settings-contact__inner">
+
         <form action="">
             <label htmlFor="">Name</label>
             <select name="" id="">
@@ -22,12 +24,13 @@ export default function SettingsContact() {
             <select name="" id="">
                 <option value="">enter state</option>
             </select>
+        </form>
+        </div>
 
             <div className="settings-contact__button-group">
                 <button>Cancel</button>
                 <button>Save changes</button>
             </div>
-        </form>
     </div>
   );
 }

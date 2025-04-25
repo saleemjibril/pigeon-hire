@@ -1,4 +1,5 @@
 .landing-header {
+    position: relative;
     width: 100%;
     max-width: 1352px;
     margin: 0 auto;
@@ -8,6 +9,21 @@
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: $tablet) {
+       height: 56px;
+      }
+
+      & >:first-child {
+        
+   & > img {
+    @media (max-width: $tablet) {
+        width: 114px;
+        height: 22.80074119567871px;
+       }
+   }
+      }
+
+
     & > nav {
         @extend %title-18;
         font-weight: 500;
@@ -15,12 +31,20 @@
         display: flex;
         align-items: center;
         gap: 32px;
+
+        @media (max-width: $tablet) {
+            display: none;
+          }
     }
 
     &__button-group {
         display: flex;
         align-items: center;
         gap: 32px;
+
+        @media (max-width: $tablet) {
+            display: none;
+          }
 
         & >:first-child {
             @extend %title-24;
@@ -41,5 +65,84 @@
 
     &__active {
         color: $secondary-color;
+    }
+
+    &__hamburger {
+        display: none;
+        @media (max-width: $tablet) {
+            display: initial;
+          }
+    }
+
+    &__mobile-menu {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background: #FFF;
+        padding: 8px 0 72px 12px;
+        z-index: 10;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: 0.4s;
+
+
+        & > nav {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 24px;
+            padding-top: 18px;
+            & > a {
+                @extend %title-18;
+                font-weight: 500;
+                color: #8D8D8D;
+            }
+        }
+
+        &__button-group {
+            position: relative;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 0 auto;
+            // transform: translateY(-300px);
+    
+            // opacity: 0;
+    
+            & > :first-child {
+                @extend %title-18;
+                width: 201px;
+              padding: 13px 24px;
+              background: #FFF6EB;
+              font-weight: 500;
+              border-radius: 24px;
+              color: $secondary-color;
+              white-space: nowrap;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              @media (max-width: $phone) {
+                width: 120px;
+                font-size: 11px;
+                height: 32px;
+              }
+             
+            }
+            & > :last-child {
+              @extend %primary-button;
+              max-width: 201px;
+              padding: 13px 24px;
+              white-space: nowrap;
+    
+              
+              
+            }
+          }
+    }
+
+    &__mobile-menu-active {
+        clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
     }
 }

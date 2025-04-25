@@ -27,7 +27,6 @@ export default function FlippedCards() {
           }`}
           onMouseEnter={() => setIsFlipped(1)}
           onMouseLeave={() => setIsFlipped(null)}
-          style={{height: "444px"}}
         >
           <div className="flip-card-inner">
             <div className="flip-card-front">
@@ -38,7 +37,7 @@ export default function FlippedCards() {
                 src={"/assets/user1.png"}
               />
             </div>
-            <div className="flip-card-back" style={{background: "#8A3668", height: "444px"}}>
+            <div className="flip-card-back" style={{background: "#8A3668"}}>
               <div className="flip-card-back__title">
               Powering Meaningful Connections
                 </div>
@@ -54,7 +53,6 @@ export default function FlippedCards() {
           }`}
           onMouseEnter={() => setIsFlipped(2)}
           onMouseLeave={() => setIsFlipped(null)}
-          style={{height: "488px"}}
 
         >
           <div className="flip-card-inner">

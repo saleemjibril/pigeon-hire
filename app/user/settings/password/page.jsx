@@ -16,7 +16,7 @@ export default function SettingsPassword() {
 
   return (
     <div className="password">
-      <div className="settings-contact__header">
+      <div className="settings-contact__inner__header">
         <div>Password and Security</div>
         {stage === 1 && <div className="pointer" onClick={() => setStage(2)}>
           <Image alt="" width={50} height={18} src={"/assets/icons/edit.svg"} />

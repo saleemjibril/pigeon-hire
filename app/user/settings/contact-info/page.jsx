@@ -9,11 +9,13 @@ export default function SettingsContact() {
   
   return (
     <div className="settings-contact">
-      <div className="settings-contact__header">
+      <div className="settings-contact__inner">
+
+      <div className="settings-contact__inner__header">
         <div>Contact Information</div>
         <Link href={"/user/settings/contact-info/edit"}><Image alt="" width={50} height={18} src={"/assets/icons/edit.svg"} /></Link>
       </div>
-      <div className="settings-contact__grid">
+      <div className="settings-contact__inner__grid">
         <div>Name:</div>
         <div>Ololade Grace</div>
         <div>Email:</div>
@@ -35,6 +37,7 @@ export default function SettingsContact() {
                     src={"/assets/icons/connectorGreen.svg"}
                     className="connector-card__role"
                   /></div>
+      </div>
       </div>
 
       <div className="settings-contact__deactivate"

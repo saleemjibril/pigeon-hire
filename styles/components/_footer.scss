@@ -2,18 +2,39 @@
   width: 100%;
   background: #13100A;
   color: #FFFFFF;
+  padding: 0 !important;
+  margin: 0 !important;
+
+
 
   &__inner {
     width: 100%;
     max-width: 1352px;
-    margin: 0 auto;
+    // margin: 0 !important;
     padding: 64px 20px;
+    // height: 400px;
+
+    
+    @media (max-width: $tablet-pro) {
+      flex-direction: column;
+      align-items: start;
+      padding: 24px 12px;
+    }
+  
 
     &__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 64px;
+      // display: none;
+
+        @media (max-width: $tablet-pro) {
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 24px;
+    height: fit-content;
+  }
 
       & > nav {
         @extend %title-18;
@@ -21,6 +42,12 @@
         align-items: center;
         gap: 32px;
         color: #8D8D8D;
+
+          @media (max-width: $tablet-pro) {
+    flex-direction: column;
+    align-items: start;
+    margin: 24px 0;
+  }
 
         & > a {
           transition: 0.4s;
@@ -34,6 +61,7 @@
         display: flex;
         align-items: center;
         gap: 24px;
+
       }
     }
 
@@ -42,6 +70,14 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 48px;
+      gap: 24px;
+      // display: none;
+
+      @media (max-width: $tablet-pro) {
+        flex-direction: column-reverse;
+        align-items: start;
+        margin-bottom: 24px;
+      }
 
       &__card1 {
         &__title {
@@ -66,6 +102,7 @@
         display: flex;
         align-items: center;
         gap: 16px;
+        // display: none;
 
         & > input {
           width: 302px;
@@ -77,6 +114,15 @@
           font-size: 16px;
           color: #FFFFFF;
 
+          @media (max-width: $tablet-pro) {
+            width: 100%;
+            max-width: 302px;
+          }
+          @media (max-width: $phone) {
+            width: 219px;
+            max-width: unset;
+          }
+
           &::placeholder {
             color: #FFFFFF;
           }
@@ -87,6 +133,10 @@
           width: 201px;
           max-width: unset;
           padding: 0 57px;
+
+          @media (max-width: $phone) {
+            width: 120px;
+          }
         }
       }
     }
@@ -100,6 +150,13 @@
       align-items: end;
       justify-content: center;
       gap: 60px;
+      flex-wrap: wrap;
+      // display: none;
+
+      @media (max-width: $phone) {
+        gap: 0;
+        // background: yellow;
+      }
 
       & >:last-child {
         display: flex;

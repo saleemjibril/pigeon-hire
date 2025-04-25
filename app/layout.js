@@ -1,6 +1,10 @@
 import "../styles/index.scss";
 import { Inter, Syne, Geist } from "next/font/google";
 import localFont from "next/font/local";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import ReduxProvider from './store/ReduxProvider';
 
 
 const durkWide = localFont({
@@ -31,6 +35,7 @@ const geist = Geist({
   variable: "--font-geist",
 });
 
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -39,7 +44,11 @@ export default function RootLayout({ children }) {
        ${syne.variable} ${inter.variable} ${geist.variable} ${durkWide.variable}`}
     >
       <body>
+        <ReduxProvider>
+      {/* <ToastContainer> */}
         {children}
+        {/* </ToastContainer> */}
+        </ReduxProvider>
       </body>
     </html>
   );
