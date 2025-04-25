@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import SearchIcon from "./searchIcon";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import NetworkIcon from "@/public/assets/icons/network";
 import UpgradeModal from "./upgradePlanModal";
@@ -9,15 +9,32 @@ import { useState } from "react";
 import UpgradeModalPay from "./upgradePlanModalPay";
 import LeadsIcon from "@/public/assets/icons/leads";
 import SettingsIcon from "@/public/assets/icons/settings";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState("");
+  const dispatch = useDispatch();
+const router = useRouter();
+  const {token} = useSelector((state) => state.auth);
 
+  console.log("tokenphy", token);
   console.log("pathname", pathname);
+
+   const handleLogout = () => {
+      document.cookie =
+        "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+      dispatch({
+        type: "LOGOUT_SUCCESS",
+      });
+      localStorage.removeItem("token");
+      router.push("/login")
+      window.scrollTo(0, 0);
+    };
   
 
   return (
+    !!token && 
     <div className="sidebar">
       <Link href="/" prefetch={true} className="sidebar__logo">
         <Image alt="" width={200} height={40} src={"/assets/icons/logo.svg"} />
@@ -46,7 +63,9 @@ export default function Sidebar() {
           
           Settings
         </Link>
-        <div className="sidebar__nav__item">
+        <div className="sidebar__nav__item"
+        onClick={handleLogout}
+        >
           <Image
             alt=""
             width={24}

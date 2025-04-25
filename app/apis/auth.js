@@ -15,3 +15,10 @@ export const loginUser = async (data) => {
       return res;
    
   };
+
+export const verifyEmail = async  (token) => {  
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/auth/verify-email?token=${token}` );
+  
+      return res;
+   
+  };

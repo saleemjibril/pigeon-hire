@@ -4,9 +4,14 @@ import { loginUser } from "../apis/auth";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm(params) {
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch();
+    const router = useRouter();
 
     const onSubmit = async (data) => {
         console.log("helloooo!");
@@ -19,17 +24,17 @@ export default function LoginForm(params) {
           const response = await loginUser(data);
 
           console.log("loginUser", response);
-          localStorage.setItem("token", response?.data?.record?.accessToken);
+          localStorage.setItem("token", response?.data?.accessToken);
           document.cookie = `auth_token=${
-            response?.data?.record?.accessToken
+            response?.data?.accessToken
           }; path=/; max-age=${60 * 60 * 24 * 7};`;
           dispatch({
             type: "USER_LOGIN_SUCCESS",
             payload: {
-              token: response?.data?.record?.accessToken
+              token: response?.data?.accessToken
             },
           });
-        //   router.push("/users");
+          router.push("/user");
     
           // toast.success("App created");
           // setOpen(false);
@@ -37,12 +42,13 @@ export default function LoginForm(params) {
           // reset();
           // setAbiFileName("");
           // setBytecodeFileName("");
-          setLoading(false);
         } catch (error) {
-        //   setError(error?.response?.data?.msg);
-          console.error("Error creating app:", error);
-          setLoading(false);
-        }
+         toast.error(error?.response?.data?.msg || "An unexpected error occurred");
+              console.log("erroropop", error);
+
+        }finally {
+      setLoading(false);
+    }
       };
 
     const {

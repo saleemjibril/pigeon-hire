@@ -1,8 +1,7 @@
 import "../styles/index.scss";
 import { Inter, Syne, Geist } from "next/font/google";
 import localFont from "next/font/local";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 import ReduxProvider from './store/ReduxProvider';
 
@@ -45,9 +44,7 @@ export default function RootLayout({ children }) {
     >
       <body>
         <ReduxProvider>
-      {/* <ToastContainer> */}
         {children}
-        {/* </ToastContainer> */}
         </ReduxProvider>
       </body>
     </html>

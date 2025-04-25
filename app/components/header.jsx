@@ -1,8 +1,15 @@
+"use client"
 import Image from "next/image";
 import ListNetworkButton from "./listNetworkButton";
+import { useSelector } from "react-redux";
+import LandingHeader from "./landingHeader";
 
 export default function Header() {
+
+  const {token, userInfo} = useSelector((state) => state.auth);
+  
   return (
+    !!token ? 
     <header className="header">
       <div className="header__title-group">
         <div className="header__title">
@@ -21,10 +28,12 @@ export default function Header() {
         />
 
         <div className="header__account">
-          <div className="header__account__initials">O</div>
-          Ololade Grace
+          <div className="header__account__initials">{userInfo?.user?.fname?.split('')[0]}</div>
+          {userInfo?.user?.fname} {userInfo?.user?.lname}
+          
         </div>
+        
       </div>
-    </header>
+    </header> : <LandingHeader />
   );
 }
