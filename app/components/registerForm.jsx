@@ -4,8 +4,11 @@ import { registerUser } from "../apis/auth";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function RegisterForm(params) {
+  const dispatch = useDispatch();
     const [confirmPassword, setConfirmPassword] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -20,17 +23,19 @@ export default function RegisterForm(params) {
           const response = await registerUser(data);
 
           console.log("registerUser", response);
-          localStorage.setItem("token", response?.data?.record?.verificationToken);
-          document.cookie = `auth_token=${
-            response?.data?.record?.verificationToken
-          }; path=/; max-age=${60 * 60 * 24 * 7};`;
-          dispatch({
-            type: "USER_LOGIN_SUCCESS",
-            payload: {
-              token: response?.data?.record?.verificationToken,
-              userInfo: response?.data?.record
-            },
-          });
+          // localStorage.setItem("token", response?.data?.record?.verificationToken);
+          // document.cookie = `auth_token=${
+          //   response?.data?.record?.verificationToken
+          // }; path=/; max-age=${60 * 60 * 24 * 7};`;
+          // dispatch({
+          //   type: "USER_LOGIN_SUCCESS",
+          //   payload: {
+          //     token: response?.data?.record?.verificationToken,
+          //     userInfo: response?.data?.record
+          //   },
+          // });
+          
+          toast.success("Registration successful. Please check your email to verify your account.");
           router.push("/login");
     
           // toast.success("App created");
@@ -41,8 +46,8 @@ export default function RegisterForm(params) {
           // setBytecodeFileName("");
           setLoading(false);
         } catch (error) {
-        //   setError(error?.response?.data?.msg);
-          console.error("Error creating app:", error);
+          toast.error(error?.response?.data?.msg);
+          console.log("Error creating app:", error);
           setLoading(false);
         }
       };
