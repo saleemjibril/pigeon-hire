@@ -11,6 +11,7 @@ export default function RegisterForm(params) {
   const dispatch = useDispatch();
     const [confirmPassword, setConfirmPassword] = useState("")
     const [loading, setLoading] = useState(false)
+    const [passwordOpen, setPasswordOpen] = useState(false)
 
     const onSubmit = async (data) => {
         console.log("helloooo!");
@@ -107,7 +108,7 @@ export default function RegisterForm(params) {
           <label htmlFor="password">Password</label>
           <div className="auth__form__input">
             <input
-              type="password"
+              type={passwordOpen ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
               required
@@ -117,7 +118,9 @@ export default function RegisterForm(params) {
               alt=""
               width={24}
               height={24}
-              src={"/assets/icons/openedEye.svg"}
+              src={passwordOpen ? "/assets/icons/closedEye.svg" : "/assets/icons/openedEye.svg"}
+              onClick={() => setPasswordOpen(!passwordOpen)}
+              className="pointer"
             />
           </div>
 
@@ -131,7 +134,7 @@ export default function RegisterForm(params) {
 
           <div className="auth__form__input">
             <input
-              type="password"
+              type={passwordOpen ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
               value={confirmPassword}
@@ -141,17 +144,14 @@ export default function RegisterForm(params) {
               alt=""
               width={24}
               height={24}
-              src={"/assets/icons/openedEye.svg"}
+              src={passwordOpen ? "/assets/icons/closedEye.svg" : "/assets/icons/openedEye.svg"}
+              onClick={() => setPasswordOpen(!passwordOpen)}
+              className="pointer"
             />
           </div>
 
           <div className="auth__form__terms">
-            <Image
-              alt=""
-              width={24}
-              height={24}
-              src={"/assets/icons/uncheckedBox.svg"}
-            />
+            <input required type="checkbox" name="" id="" />
             <div>
               I agree to the <span>Terms & Data policy</span>
             </div>

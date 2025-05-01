@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function LoginForm(params) {
     const [loading, setLoading] = useState(false)
+    const [passwordOpen, setPasswordOpen] = useState(false)
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -80,29 +81,28 @@ export default function LoginForm(params) {
           <label htmlFor="password">Password</label>
           <div className="auth__form__input-login">
             <input
-              type="password"
+              type={passwordOpen ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
               required
               {...register("password")}
+              
 
             />{" "}
             <Image
               alt=""
               width={24}
               height={24}
-              src={"/assets/icons/openedEye.svg"}
+              src={passwordOpen ? "/assets/icons/closedEye.svg" : "/assets/icons/openedEye.svg"}
+              onClick={() => setPasswordOpen(!passwordOpen)}
+              className="pointer"
             />
           </div>
 
           <div className="auth__form__forgot">
             <div>
-              <Image
-                alt=""
-                width={24}
-                height={24}
-                src={"/assets/icons/uncheckedBox.svg"}
-              />
+            <input required type="checkbox" name="" id="" />
+
               Remember me
             </div>
             <div>

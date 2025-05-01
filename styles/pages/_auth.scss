@@ -43,6 +43,12 @@
       gap: 12px;
       margin-bottom: 25px;
 
+      & > input {
+        width: 24px;
+        height: 24px;
+        accent-color: $secondary-color;
+      }
+
       & > div {
         & > span {
           color: $secondary-color;
@@ -73,6 +79,12 @@
         display: flex;
         gap: 12px;
         align-items: center;
+
+        & > input {
+          width: 24px;
+          height: 24px;
+          accent-color: $secondary-color;
+        }
       }
       & > :last-child {
         color: #da1e28;
