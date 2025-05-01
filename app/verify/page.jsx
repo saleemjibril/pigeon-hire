@@ -1,31 +1,24 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { verifyEmail } from '../apis/auth';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
-
-export default function EmailVerification() {
+// Create a component that uses the search params inside Suspense
+function VerificationContent() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
-
   const router = useRouter();
-
 
   const handleVerifyEmail = async () => {
     try {
-      const res = await verifyEmail(token)
+      const res = await verifyEmail(token);
       console.log("verifyEmail", res);
-      toast.success("Verification successful. Please login")
-      router.push("/login")
-      
-      // if (res.status === 200) {
-      //   setMessage(res.data.msg);
-      //   navigate('/login');
-      // }
+      toast.success("Verification successful. Please login");
+      router.push("/login");
     } catch (error) {
       toast.error(error?.response?.data?.msg || "An unexpected error occurred");
       console.log("error", error);
@@ -45,8 +38,7 @@ export default function EmailVerification() {
   }, [token]);
 
   return (
-    <div className='text-center mt-12'>
-        Verification
+    <>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -59,6 +51,17 @@ export default function EmailVerification() {
           )}
         </p>
       )}
+    </>
+  );
+}
+
+export default function EmailVerification() {
+  return (
+    <div className='text-center mt-12'>
+      <h1 className="text-xl font-semibold mb-4">Verification</h1>
+      <Suspense fallback={<p>Loading verification details...</p>}>
+        <VerificationContent />
+      </Suspense>
     </div>
   );
 }
