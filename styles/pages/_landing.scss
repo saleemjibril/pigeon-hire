@@ -17,6 +17,10 @@
       padding: 0 20px;
       margin: 0 auto;
 
+      @media (max-width: $phone) {
+        padding: 0 12px;
+      }
+
       &__banner {
         transform: translateY(100px);
 
@@ -276,6 +280,7 @@
 
     @media (max-width: $phone) {
       margin-bottom: 32px;
+      padding: 0 12px;
     }
 
     &__title {
@@ -389,6 +394,7 @@
 
     @media (max-width: $phone) {
       margin-bottom: 32px;
+      padding: 0 12px;
     }
 
     &__title-group {
@@ -629,6 +635,11 @@
     margin: 0 auto;
     padding-top: 64px;
 
+    @media (max-width: $phone) {
+      padding: 0 12px;
+     }
+      
+
     &__title {
       @extend %title-48;
       font-weight: 600;
@@ -719,7 +730,7 @@
       grid-template-columns: 1.7fr 1fr;
       
 
-      @media (max-width: $tablet-pro) {
+      @media (max-width: $tablet) {
         grid-template-columns: 1fr;
       }
 
@@ -761,7 +772,7 @@
           align-items: center;
           gap: 24px;
           padding-right: 0;
-          height: 458px;
+          min-height: 458px;
 
           @media (max-width: $tablet) {
             flex-direction: column;
@@ -822,7 +833,7 @@
       line-height: 140%;
 
       @media (max-width: $phone) {
-        padding: 32px 11px;
+        padding: 32px 12px;
       }
 
       &__title {
@@ -936,6 +947,11 @@
       align-items: center;
       gap: 16px;
 
+      @media (max-width: $phone) {
+        padding: 0 12px;
+       }
+        
+
       &__prev {
         @media (max-width: $phone) {
           display: none;
@@ -1003,6 +1019,11 @@
 
   &__faq {
     margin-bottom: 148px;
+
+     @media (max-width: $tablet-pro) {
+      padding: 0 12px;
+     }
+      
     &__title {
       @extend %title-48;
       font-weight: 600;

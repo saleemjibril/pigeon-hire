@@ -1,17 +1,33 @@
 .reach {
     background: #FFF;
     padding-bottom: 176px;
+
+    @media (max-width: $phone) {
+    padding-bottom: 41px;
+    }
     &__inner {
         width: 100%;
         max-width: 926px;
         margin: 0 auto;
         padding: 0 20px;
+
+        @media (max-width: $phone) {
+            padding: 0 12px;
+        }
         &__title {
             @extend %title-56;
             font-weight: 600;
             margin-bottom: 42px;
             text-align: center;
             padding: 64px 0;
+
+         
+            @media (max-width: $phone) {
+                font-size: 18px;
+                margin-bottom: 24px;
+                padding: 0;
+                padding-top: 32px;
+            }
         }
         & > form {
             & > textarea {
@@ -21,6 +37,17 @@
                 border-radius: 8px;
                 padding: 16px 24px;
                 margin-bottom: 30px;
+
+                @media (max-width: $phone) {
+                    margin-bottom: 16px;
+                }
+            }
+
+            & > div {
+                @media (max-width: $phone) {
+                    margin-bottom: 16px !important;
+                    
+                }
             }
 
             & > button {
@@ -28,6 +55,13 @@
                 max-width: 100%;
                 height: 73px;
                 border-radius: 48px;
+
+                @media (max-width: $phone) {
+                    width: 100%;
+                    height: 32px;
+                    font-size: 11px;
+                    box-shadow: none;
+                }
             }
         }
     }

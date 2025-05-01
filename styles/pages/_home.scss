@@ -2,18 +2,42 @@
   position: relative;
   width: 100%;
   max-width: 1440px;
+  // height: 100vh;
   margin: 0 auto;
   display: flex;
   align-items: start;
+  // overflow-x: hidden;
   // justify-content: center;
   // overflow-x: hidden;
   // background: pink;
 
   &__inner {
     width: 100%;
+    height: 942px;
+  overflow-y: auto;
+
 
     &__inner {
       padding: 32px 32px 32px 32px;
+    }
+  }
+
+  &__mobile {
+    display: none;
+    @media (max-width: $tablet) {   
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #fff;   
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #FFF;
+      font-size: 28px;
+      font-weight: 600;
+      z-index: 10000 !important;
     }
   }
 }

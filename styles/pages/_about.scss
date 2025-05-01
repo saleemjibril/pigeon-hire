@@ -8,6 +8,13 @@
         text-align: center;
         color: #FFF;
         margin-top: 80px;
+
+        @media (max-width: $phone) {
+            font-size: 28px;
+            margin-bottom: 16px;
+            margin-top: 60px;
+            }
+
     }
     &__subtitle {
         @extend %title-24;
@@ -16,6 +23,18 @@
         text-align: center;
         color: #FFF;
         margin-bottom: 128px;
+
+        @media (max-width: $phone) {
+            width: 100%;
+            max-width: 30ch;
+            margin: 0 auto;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 100px;
+            line-height: 140%;
+            }
+
+      
     }
 
     &__hero {
@@ -25,9 +44,13 @@
         padding-bottom: 64px;
         padding-right: 20px;
         padding-left: 20px;
+
+        @media (max-width: $phone) {
+            padding-bottom: 32px;
+            
+        }
         &__cards {
             width: 100%;
-            max-width: 1163px;
             // padding: 0 20px;
             position: absolute;
             left: 50%;
@@ -35,18 +58,33 @@
             transform: translate(-50%);
             width: 100%;
             max-width: 1163px;
-            // padding: 0 60px;
+            padding: 0 20px;
             margin: 0 auto;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 32px;
             margin-bottom: 64px;
             margin-top: -40px;
 
+            @media (max-width: $tablet) {
+                margin-bottom: 0;
+                
+            }
+            @media (max-width: $phone) {
+                margin-top: -20px;
+                gap: 8px;
+                padding: 0 12px;
+            }
+
             & > img {
-                position: relative;
                 width: 100%;
                 height: auto;
                 border-radius: 16px;
+
+                @media (max-width: $phone) {
+                    border-radius: 5.44px;
+                    
+                }
             }
         }
 
@@ -58,6 +96,17 @@
             font-weight: 600;
             margin-bottom: 48px;
             text-align: center;
+
+            @media (max-width: $tablet) {
+                margin-top: -100px;
+                
+            }
+            @media (max-width: $phone) {
+                margin-top: -168px;
+                font-size: 16px;
+                margin-bottom: 8px;
+                text-align: unset;
+            }
         }
         &__subtitle {
             @extend %title-18;
@@ -69,6 +118,13 @@
             color: #8D8D8D;
             line-height: 140%;
             gap: 20px;
+
+            @media (max-width: $phone) {
+                flex-direction: column;
+                font-size: 14px;
+                gap: 8px;
+                
+            }
 
             & >:first-child  {
                 width: 100%;
@@ -83,7 +139,12 @@
 
     &__story {
         background: #FAFAFA;
-        padding: 64px 0;
+        padding: 64px 20px;
+
+        @media (max-width: $phone) {
+            padding: 24px 12px;
+            
+        }
 
         &__title {
             @extend %title-48;
@@ -91,6 +152,12 @@
             color: $secondary-color;
             text-align: center;
             margin-bottom: 42px;
+
+            @media (max-width: $phone) {
+                font-size: 16px;
+                margin-bottom: 16px;
+                
+            }
         }
 
         &__subtitle {
@@ -102,6 +169,12 @@
             text-align: center;
             line-height: 140%;
             margin-bottom: 24px;
+
+            @media (max-width: $phone) {
+                font-size: 14px;
+                margin-bottom: 16px;
+                
+            }
         }
 
         &__user {
@@ -111,6 +184,11 @@
                 line-height: 140%;
                 margin-bottom: 8px;
                 text-align: center;
+
+                @media (max-width: $phone) {
+                    font-size: 16px;  
+                    margin-bottom: 8px;                  
+                }
             }
             & > :last-child {
                 @extend %title-18;
@@ -119,6 +197,9 @@
                 color: #8D8D8D;
                 text-align: center;
 
+                @media (max-width: $phone) {
+                    font-size: 12px;                    
+                }
             }
         }
     }
@@ -126,22 +207,45 @@
     &__we {
         background: #FFF;
         padding: 64px 0;
+
+        @media (max-width: $phone) {
+            padding: 32px 0;
+            
+        }
+
+
         
         &__inner {
             width: 100%;
             max-width: 1352px;
             padding: 0 20px;
             display: flex;
-        justify-content: space-between;
+        justify-content: center;
         gap: 20px;
         align-items: center;
         margin: 0 auto;
+
+        @media (max-width: $tablet-pro) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+           }
+        @media (max-width: $phone) {
+            padding: 0 12px;
+
+           }
+            
 
         & > img {
             width: 100%;
             max-width: 733px;
             height: auto;
             border-radius: 16px;
+
+            @media (max-width: $phone) {
+                border-radius: 0;
+                }
         }
 
         & > div {
@@ -150,6 +254,14 @@
             max-width: 34ch;
             font-weight: 400;
             line-height: 140%;
+
+            @media (max-width: $tablet-pro) {
+            text-align: center;
+            max-width: 100%;
+            }
+            @media (max-width: $phone) {
+            font-size: 14px;
+            }
         }
         }
     }
@@ -157,22 +269,45 @@
     &__value {
         background: #FFF;
         padding-bottom: 64px;
+
+        @media (max-width: $phone) {
+            padding-bottom: 32px;
+            
+        }
        &__inner {
         width: 100%;
         max-width: 1165px;
         padding: 0 20px;
         margin: 0 auto;
+
+        @media (max-width: $phone) {
+            padding: 0 12px;
+            
+        }
         &__title {
             @extend %title-48;
             font-weight: 600;
             margin-bottom: 42px;
             text-align: center;
+
+            @media (max-width: $phone) {
+                font-size: 18px;
+                margin-bottom: 24px;
+            }
+
         }
 
         &__cards {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 48px;
+
+            @media (max-width: $tablet) {
+                grid-template-columns: 1fr;
+            }
+            @media (max-width: $phone) {
+                gap: 16px;
+            }
 
             &__card {
                 display: flex;
@@ -189,6 +324,11 @@
                     font-weight: 600;
                     margin-bottom: 16px;
                     text-align: center;
+
+                    @media (max-width: $phone) {
+                        font-size: 16px;
+                        margin-bottom: 8px;
+                    }
                 }
                 &__subtitle {
                     @extend %title-18;
@@ -196,6 +336,12 @@
                     line-height: 140%;
                     text-align: center;
                     width: 100%;
+
+                    @media (max-width: $phone) {
+                        width: 100%;
+                        max-width: 35ch;
+                        font-size: 14px;
+                    }
                 }
             }
         }

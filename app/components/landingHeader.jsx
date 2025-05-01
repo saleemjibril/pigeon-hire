@@ -20,6 +20,18 @@ export default function LandingHeader({ logo }) {
               ? "/assets/icons/logoBlack.svg"
               : "/assets/icons/logo.svg"
           }
+          className="landing-header__logo-desktop"
+        />
+        <Image
+          alt=""
+          width={250}
+          height={50}
+          src={
+           
+            "/assets/icons/logo.svg"
+          }
+          className="landing-header__logo-mobile"
+
         />
       </Link>
       <nav>
@@ -63,7 +75,7 @@ export default function LandingHeader({ logo }) {
         alt=""
         width={24}
         height={24}
-        src={"/assets/icons/hamburger.svg"}
+        src={active ? "/assets/icons/close.svg" : "/assets/icons/hamburger.svg"}
         onClick={() => setActive(!active)}
       />
 

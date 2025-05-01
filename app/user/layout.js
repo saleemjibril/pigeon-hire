@@ -10,6 +10,10 @@ export default function UserLayout({ children }) {
         <Header />
         <div className="home__inner__inner">{children}</div>
       </div>
+
+      <div className="home__mobile">
+        View on desktop for better experience
+      </div>
     </div>
   );
 }
