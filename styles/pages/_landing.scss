@@ -938,6 +938,20 @@
 
     }
 
+    
+    &__arrows-mobile {
+      display: none;
+      @media (max-width: $phone) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: end;
+        padding: 0 24px;
+        margin-bottom: 8px;
+      }
+    }
+
     &__inner {
       width: 100%;
       max-width: 1352px;
@@ -957,6 +971,7 @@
           display: none;
         }
       }
+
 
       &__cards {
         display: flex;

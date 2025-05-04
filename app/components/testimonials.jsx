@@ -11,6 +11,12 @@ export default function Testimonials() {
     const prevBtn = document.querySelector(
       ".landing__testimonials__inner__prev"
     );
+    const prevBtnMobile = document.querySelector(
+      ".landing__testimonials__arrows-mobile__prev"
+    );
+    const nextBtnMobile = document.querySelector(
+      ".landing__testimonials__arrows-mobile__next"
+    );
     const slider = document.querySelector(".landing__testimonials__inner__cards");
     const card = document.querySelector(".landing__testimonials__inner__cards__card");
     let itemDimensions = card.getBoundingClientRect();
@@ -24,11 +30,34 @@ export default function Testimonials() {
     prevBtn.addEventListener("click", () => {
       slider.scrollLeft -= amountToSlide;
     });
+
+    prevBtnMobile.addEventListener("click", () => {
+      slider.scrollLeft -= amountToSlide;
+    });
+    nextBtnMobile.addEventListener("click", () => {
+      slider.scrollLeft += amountToSlide;
+    });
   }, []);
 
   return (
     <div className="landing__testimonials">
       <div className="landing__testimonials__title">User’s Stories</div>
+      <div className="landing__testimonials__arrows-mobile">
+        <Image
+          alt=""
+          width={16}
+          height={16}
+          src={"/assets/icons/arrowLeft.svg"} 
+          className="landing__testimonials__arrows-mobile__prev pointer"
+          />
+        <Image
+          alt=""
+          width={16}
+          height={16}
+          src={"/assets/icons/arrowRightReal.svg"} 
+          className="landing__testimonials__arrows-mobile__next pointer"
+          />
+      </div>
       <div className="landing__testimonials__inner">
         <Image
           alt=""

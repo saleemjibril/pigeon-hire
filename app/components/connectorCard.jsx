@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { extractMonthDay } from "../utils/formatDate";
 
-export default function ConnectorCard({type, verified, title, subtitle, members}) {
+export default function ConnectorCard({type, verified, title, subtitle, members, id, date}) {
   return (
-    <Link href={type === "community" ? "/user/community" : "/user/connector"} className="connector-card">
+    <Link href={type === "community" ? `/user/community/${id}` : "/user/connector"} className="connector-card">
       <div className="connector-card__user">
         <div className="connector-card__image"></div>
         <div>
@@ -19,7 +20,7 @@ export default function ConnectorCard({type, verified, title, subtitle, members}
             alt=""
             width={53}
             height={18}
-            src={"/assets/icons/connector.svg"}
+            src={type === "community" ? "/assets/icons/communityIndicator.svg" : "/assets/icons/connector.svg"}
             className="connector-card__role"
           />
         </div>
@@ -28,19 +29,19 @@ export default function ConnectorCard({type, verified, title, subtitle, members}
       <div className="connector-card__date-group">
         {verified ? <Image
           alt=""
-          width={60}
+          width={94}
           height={24}
           src={"/assets/icons/verified.svg"}
           className="connector-card__role"
         /> : <Image
         alt=""
-        width={60}
+        width={89}
         height={24}
         src={"/assets/icons/publicRecord.svg"}
         className="connector-card__role"
       />}
 
-        <div className="connector-card__date">March 12</div>
+        <div className="connector-card__date">{extractMonthDay(date)}</div>
       </div>
     </Link>
   );

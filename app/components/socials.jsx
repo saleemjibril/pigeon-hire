@@ -25,6 +25,11 @@ const images = [
     height: 48,
   },
   {
+    url: "/assets/icons/retailStore.svg",
+    width: 190,
+    height: 48,
+  },
+  {
     url: "/assets/icons/linkedin.svg",
     width: 155,
     height: 48,
@@ -33,7 +38,7 @@ const images = [
     url: "/assets/icons/reddit.svg",
     width: 132,
     height: 48,
-  },
+  }
 ];
 
 export default function Socials() {
