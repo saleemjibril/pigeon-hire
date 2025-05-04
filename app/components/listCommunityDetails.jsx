@@ -61,7 +61,7 @@ export default function ListCommunityDetails() {
   } = useForm({
     // Try to load saved form data from localStorage if available
     defaultValues: (() => {
-      // if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined') {
       const savedData = localStorage.getItem("communityFormData");
       if (savedData) {
         try {
@@ -70,7 +70,7 @@ export default function ListCommunityDetails() {
           console.error("Error parsing saved form data:", error);
         }
       }
-      // }
+      }
       
     })(),
   });

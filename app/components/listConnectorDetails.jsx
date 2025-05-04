@@ -83,8 +83,10 @@ export default function ListConnectorDetails() {
     setValue,
     formState: { errors },
   } = useForm({
+    
     // Try to load saved form data from localStorage if available
     defaultValues: (() => {
+      if (typeof window !== 'undefined') {
       const savedData = localStorage.getItem("connectorFormData");
       if (savedData) {
         try {
@@ -93,6 +95,7 @@ export default function ListConnectorDetails() {
           console.error("Error parsing saved form data:", error);
         }
       }
+    }
     })(),
   });
 
