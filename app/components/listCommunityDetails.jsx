@@ -353,7 +353,7 @@ export default function ListCommunityDetails() {
                           )}
                         </div>
                       </div>
-
+{/* 
             <label htmlFor="accessType">Price Tag:</label>
             <select
               id="accessType"
@@ -368,7 +368,7 @@ export default function ListCommunityDetails() {
             </select>
             {errors.accessType && (
               <p className="error">{errors.accessType.message}</p>
-            )}
+            )} */}
 
             <label htmlFor="engagementLevel">Engagement Level:</label>
             <select

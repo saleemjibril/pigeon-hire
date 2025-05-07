@@ -11,7 +11,7 @@ import {
   OutlinedInput,
   Select,
 } from "@mui/material";
-import { getCommunities } from "../apis/community";
+import { getCommunities, getConnectionCategories } from "../apis/community";
 import { usePlacesWidget } from "react-google-autocomplete";
 import Autocomplete from "react-google-autocomplete";
 import { countries } from "../utils/countries";
@@ -108,7 +108,7 @@ export default function ListConnectorDetails() {
         // Fetch all required data in parallel
         const [typesRes, platformsRes, sourcesRes, communitiesRes] =
           await Promise.all([
-            getConnectionTypes(),
+            getConnectionCategories(),
             getConnectionPlatforms(),
             getSourcesOfInfo(),
             getCommunities(),
@@ -379,8 +379,8 @@ export default function ListConnectorDetails() {
             >
               <option value="">select type</option>
               {connectionTypes.map((type) => (
-                <option key={type.id} value={type.connectionType}>
-                  {type.connectionType}
+                <option key={type.id} value={type.connCategory}>
+                  {type.connCategory}
                 </option>
               ))}
             </select>
