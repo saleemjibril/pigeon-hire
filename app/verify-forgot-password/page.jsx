@@ -17,7 +17,6 @@ export default function ForgotPassword() {
   const [passwordOpen, setPasswordOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
-  const token = localStorage.getItem("resetToken");
 
   useEffect(() => {
     const otpInputs = document.querySelectorAll(
@@ -48,6 +47,7 @@ export default function ForgotPassword() {
   };
   const handleSubmit2 = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("resetToken");
     let otp = `${otp1}${otp2}${otp3}${otp4}`;
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -75,6 +75,7 @@ export default function ForgotPassword() {
   const handleResetPassword = async () => {
     setLoading(true);
     try {
+      const token = localStorage.getItem("resetToken");
       const response = await resetPassword(password, token);
 
       console.log("resetPassword", response);
