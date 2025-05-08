@@ -79,6 +79,10 @@
                 color: #8D8D8D;
                 margin-right: 27px;
             }
+            & >:nth-child(4) {
+                white-space: break-spaces;
+                word-break: break-all;
+            }
 
             &__subscribe {
                 display: flex;
@@ -108,6 +112,8 @@
             }
             & >:nth-child(4) {
                 margin-right: 32px;
+                white-space: break-spaces;
+                word-break: break-all;
             }
             & >:nth-child(5) {
                 @extend %title-14;
@@ -184,6 +190,7 @@
                     border: 1px solid #F6911F33;
                     padding: 4px 8px;
                     border-radius: 18px;
+                    cursor: pointer;
                 }
             }
             }

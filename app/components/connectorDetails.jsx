@@ -5,11 +5,53 @@ import { useState } from "react";
 import CommunityRatings from "./communityRatings";
 import ConnectorCard from "./connectorCard";
 import ContactInfoModal from "./contactInfoModal";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { getConnector, getConnectors } from "@/app/apis/connector";
 
 export default function ConnectorDetails() {
   const [subscribed, setSubscribed] = useState(false);
   const [save, setSave] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [connectors, setConnectors] = useState([]);
+
+  const { id } = useParams();
+  const [connector, setConnector] = useState(null);
+
+  const handleGetConnector = async () => {
+    try {
+      const response = await getConnector(id);
+      console.log("getConnector", response);
+      setConnector(response?.data);
+    } catch (error) {
+      console.log("Error creating community:", error);
+      toast.error(
+        error?.response?.data?.msg ||
+          "Error getting connector. Please try again."
+      );
+    }
+  };
+
+    const handleGetCommunities = async () => {
+      setLoading(true);
+      try {
+        const response2 = await getConnectors();
+        console.log("getConnectors", response2);
+        setConnectors(response2?.data?.connectors);
+      } catch (error) {
+        console.log("Error fetching communities:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+
+  useEffect(() => {
+    handleGetConnector();
+    handleGetCommunities();
+  }, []);
 
   return (
     <>
@@ -20,7 +62,7 @@ export default function ConnectorDetails() {
           <div className="community__card__middle">
             <div className="community__card__name">
               <div>Name:</div>
-              <div>Fola Agoro</div>
+              <div>{connector?.firstName} {connector?.lastName}</div>
               <Image
                 alt=""
                 width={60}
@@ -32,16 +74,18 @@ export default function ConnectorDetails() {
             <div className="community__card__description">
               <div>Description:</div>
               <div>
-              Hi, I’m Fola Agoro, a Senior Buyer at Coca-Cola with extensive experience in procurement and supply chain management. I specialize in sourcing, contract negotiation, and supplier relations within the FMCG industry. Whether you're looking to break into corporate supply chains or secure high-value procurement deals, I can provide insights, guidance, and connections to help you succeed.
+              {connector?.description}
               </div>
             </div>
             <div className="community__card__connector-size">
               <div>Role:</div>
-              <div>Senior buyer at Coca-Cola</div>
+              <div>{connector?.description}</div>
               <div>Location:</div>
-              <div>New York</div>
+              <div>{connector?.community?.location}</div>
               <div>Category:</div>
-              <div>Business</div>
+              <div>{Array.isArray(connector?.community?.commTypeCategory) 
+            ? connector?.community?.commTypeCategory.join(", ") 
+            : connector?.community?.commTypeCategory || "Not provided"}</div>
             </div>
             {subscribed && (
               <button className="community__card__contact"
@@ -79,14 +123,14 @@ export default function ConnectorDetails() {
               {subscribed && (
                 <div className="community__details__grid">
                   <div>Connection type:</div>
-                  <div>Startup and Entrepreneur Networks</div>
+                  <div>{connector?.connectionType}</div>
                   <div>Created:</div>
                   <div>21st of January 2025</div>
                   <div>Price tag:</div>
                   <div>
                     {" "}
                     <Image
-                      src={"/assets/icons/free.svg"}
+                      src={connector?.community?.accessType === "free" ? "/assets/icons/free.svg": ""}
                       width={46}
                       height={21}
                       alt=""
@@ -94,14 +138,36 @@ export default function ConnectorDetails() {
                   </div>
                   <div>Communication platform:</div>
                   <div className="community__details__grid__platforms">
-                    <div>Facebook</div>
-                    <div>Twitter</div>
-                    <div>Telegram</div>
+                  {connector?.facebook &&  <div
+                    onClick={() => window.open(`https://facebook.com/${
+                      connector?.facebook.startsWith("@") ? connector?.facebook.substring(1) : connector?.facebook
+                    }`)}
+                    >Facebook</div>}
+                  {connector?.instagram &&  <div
+                    onClick={() => window.open(`https://instagram.com/${
+                      connector?.instagram.startsWith("@") ? connector?.instagram.substring(1) : connector?.instagram
+                    }`)}
+                    >Instagram</div>}
+                   {connector?.twitter &&  <div
+                    onClick={() => window.open(`https://twitter.com/${
+                      connector?.twitter.startsWith("@") ? connector?.twitter.substring(1) : connector?.twitter
+                    }`)}
+                    >Twitter</div>}
+                    {connector?.telegram && <div 
+                    onClick={() => window.open(`https://t.me/${
+                      connector?.telegram.startsWith("@") ? connector?.telegram.substring(1) : connector?.telegram
+                    }`)}
+                    >Telegram</div>}
+                    {connector?.linkedIn && <div 
+                    onClick={() => window.open(`https://linkedin.com/in/${
+                      connector?.linkedIn.startsWith("@") ? connector?.linkedIn.substring(1) : connector?.linkedIn
+                    }`)}
+                    >Linkedin</div>}
                   </div>
                   <div>Special achievements:</div>
-                  <div>24 awards</div>
+                  <div>{connector?.community?.recognition}</div>
                   <div>Additional services:</div>
-                  <div>Exclusive content</div>
+                  <div>{connector?.community?.additionalService}</div>
                 </div>
               )}
 
@@ -131,26 +197,19 @@ export default function ConnectorDetails() {
             Related connectors
           </div>
 
-         <ConnectorCard
-                 verified={true}
-                 title={"Fola Agoro"}
-                 subtitle={"Senior buyer at Coca-Cola"}
-               />
-               <ConnectorCard
-                       verified={false}
-                       title={"Fola Agoro"}
-                       subtitle={"Senior buyer at Coca-Cola"}
-                     />
-                     <ConnectorCard
-                             verified={false}
-                             title={"Fola Agoro"}
-                             subtitle={"Senior buyer at Coca-Cola"}
-                           />
-                           <ConnectorCard
-                                   verified={true}
-                                   title={"Fola Agoro"}
-                                   subtitle={"Senior buyer at Coca-Cola"}
-                                 />
+      {
+         connectors?.map((connector) => 
+                  <ConnectorCard
+                  type="connector"
+                  verified={true}
+                  title={connector?.communityName}
+                  subtitle={connector?.description}
+                  members={"500"}
+                  id={connector?.id}
+                  date={connector?.createdAt}
+                  />
+                )
+      }
         </>
       )}
 

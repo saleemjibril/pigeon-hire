@@ -71,3 +71,10 @@ export const createCommunity = async (data, token) => {
   return res;
 };
 
+
+export const getCommunity = async (id) => {
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/communities/${id}`);
+  return res;
+};
+
+

@@ -4,7 +4,7 @@ import { extractMonthDay } from "../utils/formatDate";
 
 export default function ConnectorCard({type, verified, title, subtitle, members, id, date}) {
   return (
-    <Link href={type === "community" ? `/user/community/${id}` : "/user/connector"} className="connector-card">
+    <Link href={type === "community" ? `/user/community/${id}` : `/user/connector/${id}`} className="connector-card">
       <div className="connector-card__user">
         <div className="connector-card__image"></div>
         <div>

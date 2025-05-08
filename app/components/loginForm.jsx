@@ -101,7 +101,7 @@ export default function LoginForm(params) {
 
           <div className="auth__form__forgot">
             <div>
-            <input required type="checkbox" name="" id="" />
+            <input type="checkbox" name="" id="" />
 
               Remember me
             </div>

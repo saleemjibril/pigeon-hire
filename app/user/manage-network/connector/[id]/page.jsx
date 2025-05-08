@@ -8,7 +8,7 @@ export default function ManageNetworkDetails() {
         links={[
           {
             name: "Home",
-            link: "/",
+            link: "/user",
           },
           {
             name: "Start entrepreneurship hub ",

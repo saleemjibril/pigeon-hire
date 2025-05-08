@@ -7,7 +7,7 @@ export default function EditNetworkDetails() {
         links={[
           {
             name: "Home",
-            link: "/",
+            link: "/user",
           },
           {
             name: "Start entrepreneurship hub ",

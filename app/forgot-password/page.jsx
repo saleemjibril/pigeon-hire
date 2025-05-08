@@ -1,16 +1,34 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import EmailSentModal from "../components/emailSentModal";
 import { useState } from "react";
+import { forgotPassword } from "../apis/auth";
+import { toast } from "react-toastify";
 
 export default function ForgotPassword() {
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setOpen(true)
-  }
+    setLoading(true);
+    try {
+      const response = await forgotPassword(email);
+      console.log("forgotPassword", response);
+      localStorage.setItem("resetToken", response?.data?.resetToken);
+      setOpen(true);
+    } catch (error) {
+      console.log("Error creating community:", error);
+      toast.error(
+        error?.response?.data?.msg ||
+          "Error creating community. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="auth">
       <div className="auth__form">
@@ -23,20 +41,31 @@ export default function ForgotPassword() {
         />
 
         <div className="auth__form__back">
-          <Image alt="" src="/assets/icons/backArrow.svg" width={24} height={24} />
+          <Image
+            alt=""
+            src="/assets/icons/backArrow.svg"
+            width={24}
+            height={24}
+          />
           Back
         </div>
 
-        <div className="auth__form__title text-center">
-        Password Recovery
-        </div>
+        <div className="auth__form__title text-center">Password Recovery</div>
         <div className="auth__form__subtitle auth__form__subtitle-login text-center">
-        Kindly provide the email address linked to your account.        </div>
+          Kindly provide the email address linked to your account.{" "}
+        </div>
         <form className="auth__form-login" onSubmit={handleSubmit}>
           <label htmlFor="email">Email address</label>
 
           <div className="auth__form__input-login">
-            <input type="email" name="email" placeholder="e.g John Doe" />
+            <input
+              type="email"
+              name="email"
+              placeholder="e.g John Doe"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <Image
               alt=""
               width={24}
@@ -45,8 +74,7 @@ export default function ForgotPassword() {
             />
           </div>
 
-          <button className="auth__button">Continue</button>
-       
+          <button className="auth__button" disabled={loading}>{loading ? "Loading..." : "Continue"}</button>
         </form>
         <br />
         <br />

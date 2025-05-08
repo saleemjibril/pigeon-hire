@@ -5,11 +5,53 @@ import { useState } from "react";
 import CommunityRatings from "./communityRatings";
 import ConnectorCard from "./connectorCard";
 import ContactInfoModal from "./contactInfoModal";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { getCommunities, getCommunity } from "../apis/community";
 
-export default function CommunityDetails() {
+export default function ConnectorDetails() {
   const [subscribed, setSubscribed] = useState(false);
   const [save, setSave] = useState(false);
   const [open, setOpen] = useState(false);
+  const [communities, setCommunities] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const { id } = useParams();
+  const [community, setCommunity] = useState(null);
+
+  const handleGetConnector = async () => {
+    try {
+      const response = await getCommunity(id);
+      console.log("getCommunity", response);
+      setCommunity(response?.data);
+    } catch (error) {
+      console.log("Error creating community:", error);
+      toast.error(
+        error?.response?.data?.msg ||
+          "Error getting connector. Please try again."
+      );
+    }
+  };
+
+    const handleGetCommunities = async () => {
+      setLoading(true);
+      try {
+        const response = await getCommunities();
+        console.log("getCommunities", response);
+        setCommunities(response?.data?.communities);        setConnectors(response2?.data?.connectors);
+      } catch (error) {
+        console.log("Error fetching communities:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    
+  useEffect(() => {
+    handleGetConnector();
+    handleGetCommunities();
+  }, []);
 
   return (
     <>
@@ -20,7 +62,7 @@ export default function CommunityDetails() {
           <div className="community__card__middle">
             <div className="community__card__name">
               <div>Name:</div>
-              <div>Startup & Entrepreneurship Hub</div>
+              <div>{community?.name}</div>
               <Image
                 alt=""
                 width={60}
@@ -32,41 +74,19 @@ export default function CommunityDetails() {
             <div className="community__card__description">
               <div>Description:</div>
               <div>
-                Connect with investors, founders & startup enthusiasts, get
-                funding insights & networking opportunities. Helping founders,
-                investors, and innovators connect and grow.
+              {community?.description}
               </div>
             </div>
             <div className="community__card__community-size">
-              <div>Community size:</div>
-              <div>500 active members</div>
+              <div>Role:</div>
+              <div>{community?.description}</div>
               <div>Location:</div>
-              <div>New York</div>
-            </div>
-            <div className="community__card__community-size">
-              <div>Facilitator:</div>
-              {subscribed ? (
-                <div>Adekoye Grace</div>
-              ) : (
-                <div
-                  className="community__card__community-size__subscribe pointer"
-                  onClick={() => setSubscribed(true)}
-                >
-                  {" "}
-                  <Image
-                    alt=""
-                    width={24}
-                    height={24}
-                    src={"/assets/icons/lightningGrey.svg"}
-                  />
-                  Subscribe to view
-                </div>
-              )}
-
+              <div>{community?.location}</div>
               <div>Category:</div>
-              <div>Business</div>
+              <div>{Array.isArray(community?.commTypeCategory) 
+            ? community?.commTypeCategory.join(", ") 
+            : community?.commTypeCategory || "Not provided"}</div>
             </div>
-
             {subscribed && (
               <button className="community__card__contact"
               onClick={() => setOpen(true)}
@@ -102,15 +122,15 @@ export default function CommunityDetails() {
 
               {subscribed && (
                 <div className="community__details__grid">
-                  <div>Connection type:</div>
-                  <div>Startup and Entrepreneur Networks</div>
+                  <div>Community type:</div>
+                  <div>{community?.communityType}</div>
                   <div>Created:</div>
                   <div>21st of January 2025</div>
                   <div>Price tag:</div>
                   <div>
                     {" "}
                     <Image
-                      src={"/assets/icons/free.svg"}
+                      src={community?.accessType === "free" ? "/assets/icons/free.svg": ""}
                       width={46}
                       height={21}
                       alt=""
@@ -118,16 +138,36 @@ export default function CommunityDetails() {
                   </div>
                   <div>Communication platform:</div>
                   <div className="community__details__grid__platforms">
-                    <div>Facebook</div>
-                    <div>Twitter</div>
-                    <div>Telegram</div>
+                  {community?.facebook &&  <div
+                    onClick={() => window.open(`https://facebook.com/${
+                      community?.facebook.startsWith("@") ? community?.facebook.substring(1) : community?.facebook
+                    }`)}
+                    >Facebook</div>}
+                  {community?.instagram &&  <div
+                    onClick={() => window.open(`https://instagram.com/${
+                      community?.instagram.startsWith("@") ? community?.instagram.substring(1) : community?.instagram
+                    }`)}
+                    >Instagram</div>}
+                   {community?.twitter &&  <div
+                    onClick={() => window.open(`https://twitter.com/${
+                      community?.twitter.startsWith("@") ? community?.twitter.substring(1) : community?.twitter
+                    }`)}
+                    >Twitter</div>}
+                    {community?.telegram && <div 
+                    onClick={() => window.open(`https://t.me/${
+                      community?.telegram.startsWith("@") ? community?.telegram.substring(1) : community?.telegram
+                    }`)}
+                    >Telegram</div>}
+                    {community?.linkedIn && <div 
+                    onClick={() => window.open(`https://linkedin.com/in/${
+                      community?.linkedIn.startsWith("@") ? community?.linkedIn.substring(1) : community?.linkedIn
+                    }`)}
+                    >Linkedin</div>}
                   </div>
-                  <div>Engagement level:</div>
-                  <div>Active Participation</div>
-                  <div>Post frequency:</div>
-                  <div className="community__details__grid__platforms">
-                    <div>7days/week</div>
-                  </div>
+                  <div>Special achievements:</div>
+                  <div>{community?.recognition}</div>
+                  <div>Additional services:</div>
+                  <div>{community?.additionalService}</div>
                 </div>
               )}
 
@@ -147,38 +187,7 @@ export default function CommunityDetails() {
               )}
             </div>
 
-            {subscribed && <>
-                <br />
-            <div className="community__divider"></div>
-
-            <div className="community__details">
-              <div className="community__details__dropdown">
-                Community Insights
-              </div>
-              <div className="community__details__grid">
-                <div>Content shared:</div>
-                <div className="community__details__grid__platforms">
-                  <div>Articles and blog posts</div>
-                  <div>Discussion threads</div>
-                </div>
-                <div>Communities interest: </div>
-                <div>Entrepreneurship / Startups</div>
-                <div>Access requirements::</div>
-                <div>Membership fee</div>
-                <div>Link to community:</div>
-                <div>URL</div>
-                <div>Interaction type:</div>
-                <div className="community__details__grid__platforms">
-                  <div>Growth</div>
-                  <div>Networking</div>
-                </div>
-                <div>Special achievements:</div>
-                <div>24 awards</div>
-                <div>Additional services:</div>
-                <div>Exclusive content</div>
-              </div>
-            </div> 
-            </>}
+        
       </div>
 
       {subscribed && <CommunityRatings />}
@@ -188,43 +197,24 @@ export default function CommunityDetails() {
             Related communities
           </div>
 
-          <ConnectorCard
-            verified={true}
-            title={"Startup & Entrepreneurship Hub"}
-            subtitle={
-              "Connect with investors, founders & startup enthusiasts. Get funding insights & networking opportunities."
-            }
-            members={"500"}
-          />
-          <ConnectorCard
-            verified={true}
-            title={"Startup & Entrepreneurship Hub"}
-            subtitle={
-              "Connect with investors, founders & startup enthusiasts. Get funding insights & networking opportunities."
-            }
-            members={"500"}
-          />
-          <ConnectorCard
-            verified={false}
-            title={"Startup & Entrepreneurship Hub"}
-            subtitle={
-              "Connect with investors, founders & startup enthusiasts. Get funding insights & networking opportunities."
-            }
-            members={"500"}
-          />
-          <ConnectorCard
-            verified={true}
-            title={"Startup & Entrepreneurship Hub"}
-            subtitle={
-              "Connect with investors, founders & startup enthusiasts. Get funding insights & networking opportunities."
-            }
-            members={"500"}
-          />
+       {
+         communities?.map((community) => 
+                  <ConnectorCard
+                  type="community"
+                  verified={true}
+                  title={community?.name}
+                  subtitle={community?.description}
+                  members={"500"}
+                  id={community?.id}
+                  date={community?.createdAt}
+                />
+                )
+       }
         </>
       )}
 
-      <ContactInfoModal open={open} setOpen={setOpen} />
-      
+<ContactInfoModal open={open} setOpen={setOpen} />
+
     </>
   );
 }

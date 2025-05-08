@@ -25,3 +25,8 @@ export const getConnectors = async () => {
   const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/connectors`);
   return res;
 };
+
+export const getConnector = async (id) => {
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/connectors/${id}`);
+  return res;
+};
