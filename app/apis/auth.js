@@ -38,7 +38,7 @@ export const forgotPassword = async (email) => {
 
   return res;
 };
-export const verifyOtp = async (otp, password, token) => {
+export const verifyOtp = async (otp, token) => {
   const config = {
     headers: {
       'x-reset-token': token
@@ -47,8 +47,7 @@ export const verifyOtp = async (otp, password, token) => {
   const res = await axios.post(
     `${process.env.NEXT_PUBLIC_URL}/auth/verify-otp`,
     {
-      otp,
-      password,
+      otp
     },
     config
   );

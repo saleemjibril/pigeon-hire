@@ -43,36 +43,29 @@ export default function ForgotPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStage(2);
-  };
-  const handleSubmit2 = async (e) => {
-    e.preventDefault();
     const token = localStorage.getItem("resetToken");
     let otp = `${otp1}${otp2}${otp3}${otp4}`;
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
     setLoading(true);
     try {
-      const response = await verifyOtp(otp, password, token);
+      const response = await verifyOtp(otp, token);
       if (response?.status === 200) {
-        handleResetPassword();
+        setStage(2)
       }
       console.log("verifyOtp", response);
+      toast.success("OTP verified successfully. Please enter your new password")
       // router.push("/reset-password");
     } catch (error) {
       console.log("Error creating community:", error);
       toast.error(
         error?.response?.data?.msg ||
-          "Error creating community. Please try again."
+          "Error verifying OTP. Please try again."
       );
     } finally {
       setLoading(false);
     }
   };
-
-  const handleResetPassword = async () => {
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
       const token = localStorage.getItem("resetToken");
@@ -85,12 +78,14 @@ export default function ForgotPassword() {
       console.log("Error resetting password:", error);
       toast.error(
         error?.response?.data?.msg ||
-          "Error creating community. Please try again."
+          "Error resetting password Please try again."
       );
     } finally {
       setLoading(false);
     }
   };
+
+
   return (
     <div className="auth">
       {stage === 1 && (
