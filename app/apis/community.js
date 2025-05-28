@@ -78,3 +78,39 @@ export const getCommunity = async (id) => {
 };
 
 
+
+
+export const createCommunityReview = async (data, communityId, token) => {
+  console.log("request", data);
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.post(
+    `${process.env.NEXT_PUBLIC_URL}/communityreviews/communities/${communityId}/reviews`,
+    data,
+    config
+  );
+  console.log("here", res);
+
+  return res;
+};
+export const getCommunityReviews = async (communityId, token) => {
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_URL}/communityreviews/communities/${communityId}/reviews`,
+    config
+  );
+  console.log("here", res);
+
+  return res;
+};

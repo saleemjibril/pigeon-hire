@@ -9,6 +9,7 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { getConnector, getConnectors } from "@/app/apis/connector";
+import ConnectorRatings from "./connectorRatings";
 
 export default function ConnectorDetails() {
   const [subscribed, setSubscribed] = useState(false);
@@ -190,7 +191,7 @@ export default function ConnectorDetails() {
         
       </div>
 
-      {subscribed && <CommunityRatings />}
+      {subscribed && <ConnectorRatings connectorId={connector?.id} averageRating={connector?.rating} />}
       {!subscribed && (
         <>
           <div className="community__related-communities">
@@ -206,6 +207,7 @@ export default function ConnectorDetails() {
                   subtitle={connector?.description}
                   members={"500"}
                   id={connector?.id}
+                  key={connector?.id}
                   date={connector?.createdAt}
                   />
                 )

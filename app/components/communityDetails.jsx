@@ -39,7 +39,7 @@ export default function ConnectorDetails() {
       try {
         const response = await getCommunities();
         console.log("getCommunities", response);
-        setCommunities(response?.data?.communities);        setConnectors(response2?.data?.connectors);
+        setCommunities(response?.data?.communities);
       } catch (error) {
         console.log("Error fetching communities:", error);
       } finally {
@@ -190,7 +190,7 @@ export default function ConnectorDetails() {
         
       </div>
 
-      {subscribed && <CommunityRatings />}
+      {subscribed && <CommunityRatings communityId={community?.id} averageRating={community?.rating} />}
       {!subscribed && (
         <>
           <div className="community__related-communities">
@@ -206,6 +206,7 @@ export default function ConnectorDetails() {
                   subtitle={community?.description}
                   members={"500"}
                   id={community?.id}
+                  key={community?.id}
                   date={community?.createdAt}
                 />
                 )

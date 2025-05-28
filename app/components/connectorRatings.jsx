@@ -3,14 +3,14 @@ import Image from "next/image";
 import ArrowDown from "./arrowDown";
 import ReviewCard from "./reviewCard";
 import { useEffect, useState } from "react";
-import { createCommunityReview, getCommunityReviews } from "../apis/community";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import FilledStar from "@/public/assets/icons/filledStar.svg";
 import EmptyStar from "@/public/assets/icons/emptyStar.svg";
+import { createConnectorReview, getConnectorReviews } from "../apis/connector";
 
 
-export default function CommunityRatings({communityId, averageRating}) {
+export default function ConnectorRatings({connectorId, averageRating}) {
   const {token, userInfo} = useSelector((state) => state.auth);
 console.log("userInfo", userInfo);
 
@@ -50,11 +50,11 @@ console.log("userInfo", userInfo);
         toast.error("Comment can't be empty");
 
       }
-      const response = await createCommunityReview({
+      const response = await createConnectorReview({
         rating, comment, reviewerId: userInfo?.user?.id
-      }, communityId, token);
+      }, connectorId, token);
 
-      console.log("createCommunityReview", response);
+      console.log("createConnectorReview", response);
       toast.success("Thankyou for your review")
       setComment("");
       setRating(0);
@@ -70,9 +70,9 @@ console.log("userInfo", userInfo);
     };
 
     const handleGetReviews = async () => {
-      const response = await getCommunityReviews(communityId, token);
+      const response = await getConnectorReviews(connectorId, token);
 
-      console.log("getCommunityReviews", response);
+      console.log("getConnectorReviews", response);
       setReviews(response?.data?.reviews);
     }
 
