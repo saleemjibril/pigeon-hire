@@ -102,6 +102,10 @@ export default function ForgotPassword() {
       <div className="auth__illustration"></div>
 
       <EmailSentModal open={open} setOpen={setOpen} />
+
+      <div className="home__mobile">
+        View on desktop for better experience
+      </div>
     </div>
   );
 }

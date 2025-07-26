@@ -61,7 +61,7 @@ console.log("userInfo", userInfo);
       handleGetReviews();
       } catch (error) {
         console.log("Error submitting rating:", error);
-        toast.error(error?.response?.data?.message || "Error submitting rating. Please try again.");
+        toast.error(error?.response?.data?.msg || "Error submitting rating. Please try again.");
   
       } finally {
         setLoading(false)
@@ -80,6 +80,7 @@ console.log("userInfo", userInfo);
       handleGetReviews();
     }, [])
 
+    
 
 
     

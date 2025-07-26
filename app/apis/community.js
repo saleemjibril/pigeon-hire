@@ -114,3 +114,61 @@ export const getCommunityReviews = async (communityId, token) => {
 
   return res;
 };
+export const favoriteCommunity = async (userId, communityId, token) => {
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.post(
+    `${process.env.NEXT_PUBLIC_URL}/favorites/add`,
+    {
+      userId,
+      communityId
+    },
+    config
+  );
+  console.log("here", res);
+
+  return res;
+};
+
+export const communityFavoriteChecker = async (userId, communityId, token) => {
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_URL}/favorites/check/${userId}/${communityId}`,
+    config
+  );
+  console.log("here", res);
+
+  return res;
+};
+
+export const removeFavoriteCommunity = async (userId, communityId, token) => {
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.delete(
+    `${process.env.NEXT_PUBLIC_URL}/favorites/remove/${userId}/${communityId}`,
+    {
+      userId,
+      communityId
+    },
+    config
+  );
+  console.log("here", res);
+
+  return res;
+};

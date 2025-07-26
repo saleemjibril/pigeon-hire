@@ -38,6 +38,12 @@
       font-size: 28px;
       font-weight: 600;
       z-index: 10000 !important;
+      text-align: center;
+    }
+
+    @media (max-width: $tablet) {   
+      font-size: 20px;
+
     }
   }
 }

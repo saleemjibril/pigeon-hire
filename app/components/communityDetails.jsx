@@ -8,14 +8,20 @@ import ContactInfoModal from "./contactInfoModal";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { getCommunities, getCommunity } from "../apis/community";
+import { communityFavoriteChecker, favoriteCommunity, getCommunities, getCommunity, removeFavoriteCommunity } from "../apis/community";
+import { useSelector } from "react-redux";
 
 export default function ConnectorDetails() {
+  const {userInfo, token} = useSelector((state) => state.auth);
+  console.log("userInfo", userInfo);
+  
+
   const [subscribed, setSubscribed] = useState(false);
   const [save, setSave] = useState(false);
   const [open, setOpen] = useState(false);
   const [communities, setCommunities] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { id } = useParams();
   const [community, setCommunity] = useState(null);
@@ -51,7 +57,47 @@ export default function ConnectorDetails() {
   useEffect(() => {
     handleGetConnector();
     handleGetCommunities();
+    handleCheckCommunityFavorite();
+
   }, []);
+
+  const handleFavoriteCommunity = async () => {
+    try {
+      const response = await favoriteCommunity(userInfo?.user?.id, id,token);
+    console.log("userInfo", response);
+    toast.success(response?.data?.msg)
+    handleCheckCommunityFavorite();
+    } catch (error) {
+      console.log("Error adding community to favorites:", error);
+        toast.error(error?.response?.data?.msg || "Unable to add community to favorites. Please try again.");
+    }
+    
+  }
+
+  const handleRemoveFavoriteCommunity = async () => {
+    console.log("isFavorite", isFavorite);
+    
+    try {
+      const response = await removeFavoriteCommunity(userInfo?.user?.id, id,token);
+    console.log("removeFavoriteCommunity", response);
+    toast.success(response?.data?.msg)
+    handleCheckCommunityFavorite();
+    } catch (error) {
+      console.log("Error adding community to favorites:", error);
+        toast.error(error?.response?.data?.msg || "Unable to add community to favorites. Please try again.");
+    }
+    
+  }
+
+  const handleCheckCommunityFavorite = async () => {
+    const response = await communityFavoriteChecker(userInfo?.user?.id, id,token);
+
+    console.log("communityFavoriteChecker", response);
+    setIsFavorite(response?.data?.isFavorite);
+  }
+
+
+
 
   return (
     <>
@@ -94,11 +140,12 @@ export default function ConnectorDetails() {
             )}
           </div>
 
-          <div className="community__card__save pointer">
+          <div className="community__card__save pointer"
+          onClick={isFavorite ? handleRemoveFavoriteCommunity : handleFavoriteCommunity}
+          >
             <Image
-            onMouseEnter={() => setSave(true)}
-            onMouseLeave={() => setSave(false)}
-              src={save ? "/assets/icons/saveFilled.svg" : "/assets/icons/save.svg"}
+           
+              src={isFavorite ? "/assets/icons/saveFilled.svg" : "/assets/icons/save.svg"}
               width={32}
               height={32}
               alt=""

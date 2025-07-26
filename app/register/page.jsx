@@ -34,6 +34,10 @@ export default function Register() {
       </div>
 
       <div className="auth__illustration"></div>
+
+      <div className="home__mobile">
+        View on desktop for better experience
+      </div>
     </div>
   );
 }
