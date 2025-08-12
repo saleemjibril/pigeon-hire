@@ -114,6 +114,7 @@ export const getCommunityReviews = async (communityId, token) => {
 
   return res;
 };
+
 export const favoriteCommunity = async (userId, communityId, token) => {
   
   const config = {
