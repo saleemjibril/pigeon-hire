@@ -3,46 +3,48 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const images = [
-  {
-    url: "/assets/icons/slack.svg",
-    width: 120,
-    height: 48,
-  },
-  {
-    url: "/assets/icons/instagram.svg",
-    width: 173,
-    height: 48,
-  },
-  {
-    url: "/assets/icons/facebook.svg",
-    width: 170,
-    height: 48,
-  },
-  {
-    url: "/assets/icons/whatsapp.svg",
-    width: 179,
-    height: 48,
-  },
-  {
-    url: "/assets/icons/retailStore.svg",
-    width: 190,
-    height: 48,
-  },
-  {
-    url: "/assets/icons/linkedin.svg",
-    width: 155,
-    height: 48,
-  },
-  {
-    url: "/assets/icons/reddit.svg",
-    width: 132,
-    height: 48,
-  }
-];
 
 export default function Socials() {
   const [duplicateCount, setDuplicateCount] = useState(2);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const images = [
+    {
+      url: "/assets/icons/slack.svg",
+      width: isMobile ? 101.15789031982422 : 120,
+      height: isMobile ? 40.421051025390625 : 48,
+    },
+    {
+      url: "/assets/icons/instagram.svg",
+      width: isMobile ? 146.15789794921875 : 173,
+      height: isMobile ? 40.421051025390625 : 48,
+    },
+    {
+      url: "/assets/icons/facebook.svg",
+      width: isMobile ? 146.15789794921875 : 170,
+      height: isMobile ? 40.421051025390625 : 48,
+    },
+    {
+      url: "/assets/icons/whatsapp.svg",
+      width: isMobile ? 149.15789794921875 : 179,
+      height: isMobile ? 40.421051025390625 : 48,
+    },
+    {
+      url: "/assets/icons/retailStore.svg",
+      width: isMobile ? 160.15789794921875 : 190,
+      height: isMobile ? 40.421051025390625 : 48,
+    },
+    {
+      url: "/assets/icons/linkedin.svg",
+      width: isMobile ? 136.15789031982422 : 155,
+      height: isMobile ? 40.421051025390625 : 48,
+    },
+    {
+      url: "/assets/icons/reddit.svg",
+      width: isMobile ? 105.15789794921875 : 132,
+      height: isMobile ? 40.421051025390625 : 48,
+    }
+  ];
 
   useEffect(() => {
     const calculateDuplicates = () => {
@@ -66,6 +68,20 @@ export default function Socials() {
   useEffect(() => {
     document.documentElement.style.setProperty('--item-count', images.length);
   }, [images.length]);
+
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+  
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
+
+
+
 
   return (
     <div className="landing__social-banner">

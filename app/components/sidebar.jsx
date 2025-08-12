@@ -16,8 +16,10 @@ export default function Sidebar() {
   const [open, setOpen] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
-  const { token } = useSelector((state) => state.auth);
+  // const { token } = useSelector((state) => state.auth);
   const [currentPlan, setCurrentPlan] = useState("Free plan");
+
+  const {token, userInfo} = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!token) return;
@@ -125,9 +127,9 @@ export default function Sidebar() {
       </div>
 
       <div className="sidebar__account">
-        <div className="sidebar__account__initials">O</div>
+        <div className="sidebar__account__initials">{userInfo?.user?.fname?.split('')[0]}</div>
         <div>
-          <div className="sidebar__account__name">Ololade Grace</div>
+          <div className="sidebar__account__name"> {userInfo?.user?.fname} {userInfo?.user?.lname}</div>
           <div className="sidebar__account__email">
             @ololadegrace.ot@gmail.com
           </div>
