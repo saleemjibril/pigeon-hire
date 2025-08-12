@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import NetworkIcon from "@/public/assets/icons/network";
 import UpgradeModal from "./upgradePlanModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UpgradeModalPay from "./upgradePlanModalPay";
 import LeadsIcon from "@/public/assets/icons/leads";
 import SettingsIcon from "@/public/assets/icons/settings";
@@ -15,23 +15,53 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState("");
   const dispatch = useDispatch();
-const router = useRouter();
-  const {token} = useSelector((state) => state.auth);
+  const router = useRouter();
+  const { token } = useSelector((state) => state.auth);
+  const [currentPlan, setCurrentPlan] = useState("Free plan");
 
-  console.log("tokenphy", token);
-  console.log("pathname", pathname);
+  useEffect(() => {
+    if (!token) return;
+    // Replace with your actual endpoint if different
+    fetch("/api/subscriptions/current", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.subscription && data.subscription.status === "active") {
+          let planName = "Free plan";
+          switch (data.subscription.planType) {
+            case "monthly":
+              planName = "Essential plan";
+              break;
+            case "annually":
+              planName = "Premier plan";
+              break;
+            case "quarterly":
+              planName = "Pro plan";
+              break;
+            default:
+              planName = data.subscription.planType.charAt(0).toUpperCase() + data.subscription.planType.slice(1) + " plan";
+          }
+          setCurrentPlan(planName);
+        } else {
+          setCurrentPlan("Free plan");
+        }
+      })
+      .catch(() => setCurrentPlan("Free plan"));
+  }, [token]);
 
-   const handleLogout = () => {
-      document.cookie =
-        "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-      dispatch({
-        type: "LOGOUT_SUCCESS",
-      });
-      localStorage.removeItem("token");
-      router.push("/login")
-      window.scrollTo(0, 0);
-    };
-  
+  const handleLogout = () => {
+    document.cookie =
+      "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+    dispatch({
+      type: "LOGOUT_SUCCESS",
+    });
+    localStorage.removeItem("token");
+    router.push("/login");
+    window.scrollTo(0, 0);
+  };
 
   return (
     !!token && 
@@ -77,22 +107,20 @@ const router = useRouter();
       </div>
 
       <div className="sidebar__plan">
-
         <div className="sidebar__plan__inner">
-
-        <div className="sidebar__plan__inner__title">Free plan</div>
-        <div className="sidebar__plan__inner__line"></div>
-        <button
-        onClick={() => setOpen(true)}
-        >
-          <Image
-            alt=""
-            width={24}
-            height={24}
-            src={"/assets/icons/lightning.svg"}
-          />
-          Upgrade plan
-        </button>
+          <div className="sidebar__plan__inner__title">{currentPlan}</div>
+          <div className="sidebar__plan__inner__line"></div>
+          <button
+          onClick={() => setOpen(true)}
+          >
+            <Image
+              alt=""
+              width={24}
+              height={24}
+              src={"/assets/icons/lightning.svg"}
+            />
+            Upgrade plan
+          </button>
         </div>
       </div>
 
