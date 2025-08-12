@@ -1,23 +1,75 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, MenuItem, Select } from "@mui/material";
 import Link from "next/link";
 import DeleteModal from "./deleteModal";
+import { getUserAnalytics } from "../apis/analyticsService"; // Adjust path as needed
 
 export default function LeadsTable() {
   const [userType, setUserType] = useState("communities");
   const [anchorElFour, setAnchorElFour] = useState(null);
   const [open, setOpen] = useState(null);
+  const [communityLeads, setCommunityLeads] = useState([]);
+  const [connectorLeads, setConnectorLeads] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const openerFour = Boolean(anchorElFour);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
+  // Fetch analytics data on component mount
+  useEffect(() => {
+    const fetchLeadsData = async () => {
+      try {
+        setLoading(true);
+        const response = await getUserAnalytics();
+        
+        if (response.success) {
+          const { detailedData } = response.data;
+          
+          // Filter leads by type
+          const communityLeadsData = detailedData.leads.data.filter(
+            lead => lead.leadType === 'community' && lead.community
+          );
+          
+          const connectorLeadsData = detailedData.leads.data.filter(
+            lead => lead.leadType === 'connector' && lead.connector
+          );
+          
+          setCommunityLeads(communityLeadsData);
+          setConnectorLeads(connectorLeadsData);
+        }
+      } catch (err) {
+        console.error('Error fetching leads:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLeadsData();
+  }, []);
+
   const handleCloseFour = () => {
     setAnchorElFour(null);
   };
+
   const handleClickFour = (event) => {
     setAnchorElFour(event.currentTarget);
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB');
+  };
+
+  const getCommunityCategory = (communityType) => {
+    const categoryMap = {
+      'Cultural and Identity-Based Communities': 'Cultural',
+      'Professional': 'Business',
+      'Educational': 'Education',
+      'Hobby and Interest-Based': 'Hobby',
+    };
+    return categoryMap[communityType] || 'Business';
   };
 
   return (
@@ -61,84 +113,35 @@ export default function LeadsTable() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Startup entrepreneurship hub</td>
-              <td>ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-
-          
-          
+            {loading ? (
+              <tr>
+                <td colSpan="6">Loading...</td>
+              </tr>
+            ) : communityLeads.length > 0 ? (
+              communityLeads.map((lead) => (
+                <tr key={lead.id}>
+                  <td>{formatDate(lead.createdAt)}</td>
+                  <td>{lead.community?.name || 'N/A'}</td>
+                  <td>{lead.community?.email || 'N/A'}</td>
+                  <td>{getCommunityCategory(lead.community?.communityType)}</td>
+                  <td>{lead.status === 'contacted' ? '✓' : ''}</td>
+                  <td onClick={handleClickFour}>
+                    <Image
+                      src={"/assets/icons/more.svg"}
+                      width={16}
+                      height={16}
+                      alt=""
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" style={{textAlign: 'center', padding: '20px'}}>
+                  No community leads data found
+                </td>
+              </tr>
+            )}
 
             <Menu
               id="basic-menu"
@@ -217,8 +220,7 @@ export default function LeadsTable() {
           <thead className="bg-[#F5F5F5]">
             <tr className="">
               <th>Date</th>
-              <th>Connector name
-              </th>
+              <th>Connector name</th>
               <th>Role</th>
               <th>Contact</th>
               <th>Category</th>
@@ -234,73 +236,37 @@ export default function LeadsTable() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Fola Agoro</td>
-              <td>Senior buyer at coca-cola</td>
-              <td>Ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Fola Agoro</td>
-              <td>Senior buyer at coca-cola</td>
-              <td>Ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Fola Agoro</td>
-              <td>Senior buyer at coca-cola</td>
-              <td>Ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>12/03/2025</td>
-              <td>Fola Agoro</td>
-              <td>Senior buyer at coca-cola</td>
-              <td>Ololadegrace.ot@gmail.com</td>
-              <td>Business</td>
-              <td></td>
-              <td onClick={handleClickFour}>
-                <Image
-                  src={"/assets/icons/more.svg"}
-                  width={16}
-                  height={16}
-                  alt=""
-                />
-              </td>
-            </tr>
+            {loading ? (
+              <tr>
+                <td colSpan="7">Loading...</td>
+              </tr>
+            ) : connectorLeads.length > 0 ? (
+              connectorLeads.map((lead) => (
+                <tr key={lead.id}>
+                  <td>{formatDate(lead.createdAt)}</td>
+                  <td>{`${lead.connector?.firstName || ''} ${lead.connector?.lastName || ''}`.trim() || 'N/A'}</td>
+                  <td>{lead.connector?.role || 'N/A'}</td>
+                  <td>{lead.connector?.email || 'N/A'}</td>
+                  <td>Business</td>
+                  <td>{lead.status === 'contacted' ? '✓' : ''}</td>
+                  <td onClick={handleClickFour}>
+                    <Image
+                      src={"/assets/icons/more.svg"}
+                      width={16}
+                      height={16}
+                      alt=""
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" style={{textAlign: 'center', padding: '20px'}}>
+                  No connector leads data found
+                </td>
+              </tr>
+            )}
 
-      
-        
             <Menu
               id="basic-menu"
               anchorEl={anchorElFour}
@@ -374,29 +340,6 @@ export default function LeadsTable() {
         </table>
       )}
 
-      {/* <div className="manage-network-table__label">
-          <div>Date</div>
-          <div>Community name</div>
-          <div>Category</div>
-          <div>Total profile view</div>
-          <div>Contact clicks</div>
-          <div></div>
-        </div>
-
-        
-            <div
-              className="manage-network-table__item"
-            //   onClick={() => navigate(`/admin/users/${user?.id}`)}
-            >
-              <div>12/03/2025</div>
-              <div>Startup entrepreneurship hub</div>
-              <div>
-              Business
-              </div>
-              <div>100</div>
-              <div>56</div>
-              <div></div>
-            </div> */}
       <DeleteModal open={open} setOpen={setOpen} />
     </div>
   );
