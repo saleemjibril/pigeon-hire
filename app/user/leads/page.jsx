@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -30,6 +29,22 @@ export default function Leads() {
     fetchData();
   }, []);
 
+  // Calculate saved communities count from leads data
+  const getSavedCommunitiesCount = () => {
+    if (!analyticsData?.detailedData?.leads?.data) return 0;
+    return analyticsData.detailedData.leads.data.filter(
+      lead => lead.leadType === "community" && lead.connectorId === null
+    ).length;
+  };
+
+  // Calculate saved connectors count from leads data
+  const getSavedConnectorsCount = () => {
+    if (!analyticsData?.detailedData?.leads?.data) return 0;
+    return analyticsData.detailedData.leads.data.filter(
+      lead => lead.leadType === "connector" && lead.communityId === null
+    ).length;
+  };
+
   // Default values while loading or if data is unavailable
   const getCardValue = (value, defaultValue = 0) => {
     return loading ? "..." : value ?? defaultValue;
@@ -48,7 +63,7 @@ export default function Leads() {
           <div className="leads__cards__card__group">
             <div>Saved Communities</div>
             <div className="leads__cards__card__number">
-              {getCardValue(analyticsData?.analytics?.networks, 4)}
+              {loading ? "..." : getSavedCommunitiesCount()}
             </div>
           </div>
         </div>
@@ -62,7 +77,7 @@ export default function Leads() {
           <div className="leads__cards__card__group">
             <div>Saved Connectors</div>
           <div className="leads__cards__card__number-mini">
-            {getCardValue(analyticsData?.recentActivity?.networks, 1200)}
+            {loading ? "..." : getSavedConnectorsCount()}
           </div>
           </div>
         </div>
