@@ -19,7 +19,7 @@ import {
 import { createLead } from "../apis/lead";
 import { useSelector } from "react-redux";
 
-export default function ConnectorDetails() {
+export default function CommunityDetails() {
     const { userInfo, token } = useSelector((state) => state.auth);
     console.log("userInfo", userInfo);
 

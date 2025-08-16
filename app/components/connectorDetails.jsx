@@ -12,6 +12,7 @@ import {
     getConnector,
     getConnectors,
     favoriteConnector,
+    favoriteConnectorGeneric,
     connectorFavoriteChecker,
     removeFavoriteConnector,
 } from "@/app/apis/connector";
@@ -62,15 +63,15 @@ export default function ConnectorDetails() {
 
     const handleFavoriteConnector = async () => {
         try {
-            // First, add connector to favorites
+            console.log("Step 1: Adding to favorites...");
             const favoriteResponse = await favoriteConnector(
                 userInfo?.user?.id,
                 id,
                 token
             );
-            console.log("favoriteConnector response", favoriteResponse);
+            console.log("Favorite added successfully:", favoriteResponse);
 
-            // Then create a lead for the connector
+            console.log("Step 2: Creating lead...");
             const leadData = {
                 userId: userInfo?.user?.id,
                 connectorId: id,
@@ -78,23 +79,21 @@ export default function ConnectorDetails() {
                 notes: `User saved ${connector?.firstName} ${connector?.lastName} as favorite connector`,
                 followUpDate: new Date(
                     Date.now() + 7 * 24 * 60 * 60 * 1000
-                ).toISOString(), // 7 days from now
+                ).toISOString(),
             };
 
             const leadResponse = await createLead(leadData, token);
-            console.log("createLead response", leadResponse);
+            console.log("Lead created successfully:", leadResponse);
 
-            toast.success(
-                favoriteResponse?.data?.msg || "Connector saved successfully!"
-            );
+            toast.success("Connector saved successfully!");
             handleCheckConnectorFavorite();
         } catch (error) {
-            console.log(
-                "Error adding connector to favorites or creating lead:",
-                error
-            );
+            console.error("Detailed error:", error);
+            console.error("Error response:", error.response?.data);
+
             toast.error(
-                error?.response?.data?.msg ||
+                error?.response?.data?.message ||
+                    error?.response?.data?.msg ||
                     "Unable to add connector to favorites. Please try again."
             );
         }

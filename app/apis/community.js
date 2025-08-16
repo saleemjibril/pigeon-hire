@@ -124,7 +124,7 @@ export const favoriteCommunity = async (userId, communityId, token) => {
   };
 
   const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_URL}/favorites/add`,
+    `${process.env.NEXT_PUBLIC_URL}/favorites/communities/add`,
     {
       userId,
       communityId
@@ -145,7 +145,7 @@ export const communityFavoriteChecker = async (userId, communityId, token) => {
   };
 
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_URL}/favorites/check/${userId}/${communityId}`,
+    `${process.env.NEXT_PUBLIC_URL}/favorites/communities/check/${userId}/${communityId}`,
     config
   );
   console.log("here", res);
@@ -162,7 +162,7 @@ export const removeFavoriteCommunity = async (userId, communityId, token) => {
   };
 
   const res = await axios.delete(
-    `${process.env.NEXT_PUBLIC_URL}/favorites/remove/${userId}/${communityId}`,
+    `${process.env.NEXT_PUBLIC_URL}/favorites/communities/${userId}/${communityId}`,
     {
       userId,
       communityId
