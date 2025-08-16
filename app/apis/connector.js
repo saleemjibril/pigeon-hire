@@ -79,7 +79,7 @@ export const favoriteConnector = async (userId, connectorId, token) => {
   };
 
   const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_URL}/favorites/connector/add`,
+    `${process.env.NEXT_PUBLIC_URL}/favorites/connectors/add`,
     {
       userId,
       connectorId
@@ -92,33 +92,66 @@ export const favoriteConnector = async (userId, connectorId, token) => {
 };
 
 export const connectorFavoriteChecker = async (userId, connectorId, token) => {
+  console.log("connectorFavoriteChecker called with:", { userId, connectorId, hasToken: !!token });
+  
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_URL}/favorites/connector/check/${userId}/${connectorId}`,
-    config
-  );
-  console.log("connectorFavoriteChecker response", res);
-
-  return res;
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_URL}/favorites/connectors/check/${userId}/${connectorId}`, // Fixed: was /favorites/connector/check/
+      config
+    );
+    console.log("connectorFavoriteChecker response", res);
+    return res;
+  } catch (error) {
+    console.error("connectorFavoriteChecker error:", error);
+    throw error;
+  }
 };
 
 export const removeFavoriteConnector = async (userId, connectorId, token) => {
+  console.log("removeFavoriteConnector called with:", { userId, connectorId, hasToken: !!token });
+  
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const res = await axios.delete(
-    `${process.env.NEXT_PUBLIC_URL}/favorites/connector/remove/${userId}/${connectorId}`,
+  try {
+    const res = await axios.delete(
+      `${process.env.NEXT_PUBLIC_URL}/favorites/connectors/${userId}/${connectorId}`, // Fixed: was /favorites/connector/remove/
+      config
+    );
+    console.log("removeFavoriteConnector response", res);
+    return res;
+  } catch (error) {
+    console.error("removeFavoriteConnector error:", error);
+    throw error;
+  }
+};
+
+export const favoriteConnectorGeneric = async (userId, connectorId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.post(
+    `${process.env.NEXT_PUBLIC_URL}/favorites/add`,
+    {
+      userId,
+      connectorId,
+      favoriteType: "connector"
+    },
     config
   );
-  console.log("removeFavoriteConnector response", res);
+  console.log("favoriteConnectorGeneric response", res);
 
   return res;
 };
