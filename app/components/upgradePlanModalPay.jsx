@@ -9,9 +9,12 @@ import {
     useElements,
 } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+// Safely initialize Stripe only when a publishable key exists
+const hasStripeKey = !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+const stripePromise =
+    typeof window !== "undefined" && hasStripeKey
+        ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+        : null;
 
 // Cookie utility function
 const getCookie = (name) => {
@@ -208,6 +211,7 @@ export default function UpgradeModalPay({
 
         setIsInitializing(true);
         setErrorMessage("");
+console.log("winning plan data", planData);
 
         try {
             const paymentData = {
@@ -372,7 +376,7 @@ export default function UpgradeModalPay({
                         />
                     </div>
 
-                    <div
+                        <div
                         className='upgrade-plan-modal__inner__content'
                         style={{
                             padding: "24px",
@@ -652,13 +656,14 @@ export default function UpgradeModalPay({
                                     <button
                                         onClick={initializePayment}
                                         disabled={
-                                            isInitializing || !planData?.priceId
+                                            isInitializing || !planData?.priceId || !hasStripeKey
                                         }
                                         style={{
                                             padding: "12px 24px",
                                             backgroundColor:
                                                 isInitializing ||
-                                                !planData?.priceId
+                                                !planData?.priceId ||
+                                                !hasStripeKey
                                                     ? "#e5e7eb"
                                                     : "#6366f1",
                                             color: "white",
@@ -668,7 +673,8 @@ export default function UpgradeModalPay({
                                             fontWeight: "600",
                                             cursor:
                                                 isInitializing ||
-                                                !planData?.priceId
+                                                !planData?.priceId ||
+                                                !hasStripeKey
                                                     ? "not-allowed"
                                                     : "pointer",
                                         }}
@@ -678,13 +684,17 @@ export default function UpgradeModalPay({
                                             : "Stripe"}
                                         {!planData?.priceId &&
                                             " (Price ID Missing)"}
+                                        {!hasStripeKey &&
+                                            " (Publishable key missing)"}
                                     </button>
                                 </div>
                             )}
 
                         {showStripeForm &&
                             paymentStatus === "" &&
-                            clientSecret && (
+                            clientSecret &&
+                            hasStripeKey &&
+                            stripePromise && (
                                 <Elements
                                     stripe={stripePromise}
                                     options={{
@@ -708,6 +718,19 @@ export default function UpgradeModalPay({
                                     />
                                 </Elements>
                             )}
+                        {showStripeForm && clientSecret && !hasStripeKey && (
+                            <div
+                                style={{
+                                    backgroundColor: "#fff7ed",
+                                    border: "1px solid #fb923c",
+                                    borderRadius: "8px",
+                                    padding: "16px",
+                                    color: "#c2410c",
+                                }}
+                            >
+                                Stripe publishable key is missing. Set NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY and reload.
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

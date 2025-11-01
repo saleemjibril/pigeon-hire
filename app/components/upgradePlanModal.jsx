@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UpgradeModalPay from "./upgradePlanModalPay";
+import { getStripePlans } from "../apis/stripe";
 
 export default function UpgradeModal({ open, setOpen }) {
   const [payOpen, setPayOpen] = useState(false);
@@ -11,6 +12,8 @@ export default function UpgradeModal({ open, setOpen }) {
   const [allPlans, setAllPlans] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(null);
 
+  console.log("subscriptionPlans", subscriptionPlans);
+  
   // Get user info from Redux store
   const userInfo = useSelector(state => state.auth.userInfo);
   const dispatch = useDispatch();
@@ -94,87 +97,49 @@ Please refresh the page to see your updated subscription status.`);
     { code: 'ZMW', name: 'Zambian Kwacha (ZK)', symbol: 'ZK' }
   ];
 
-  // Function to fetch Stripe prices
-  const fetchStripePrices = async () => {
-    try {
-      const response = await fetch('/api/stripe-prices');
-      const data = await response.json();
-      
-      if (data.success) {
-        console.log('💳 Stripe prices fetched:', data.count);
-        return data.prices || [];
-      } else {
-        console.error('❌ Failed to fetch Stripe prices:', data.error);
-        return [];
-      }
-    } catch (error) {
-      console.error('💥 Error fetching Stripe prices:', error);
-      return [];
-    }
-  };
-
-  // Function to create price ID mapping
-  const createPriceIdMapping = (stripePrices) => {
-    const mapping = {};
+  // Function to process Stripe plans into organized structure
+  const processStripePlans = (stripePlans) => {
+    const plansByCurrency = {};
     
-    stripePrices.forEach(price => {
-      // Skip non-recurring prices
-      if (!price.recurring) return;
-      
-      const currency = price.currency.toUpperCase();
-      const amount = price.unit_amount / 100; // Convert cents to dollars
+    stripePlans.forEach(plan => {
+      const currency = plan.currency.toUpperCase();
+      const amount = plan.amount / 100; // Convert cents to dollars
       
       // Determine plan type based on interval
       let planType;
-      if (price.recurring.interval === 'month' && price.recurring.interval_count === 1) {
+      if (plan.interval === 'month' && plan.interval_count === 1) {
         planType = 'monthly';
-      } else if (price.recurring.interval === 'year' && price.recurring.interval_count === 1) {
+      } else if (plan.interval === 'year' && plan.interval_count === 1) {
         planType = 'annually';
-      } else if (price.recurring.interval === 'month' && price.recurring.interval_count === 3) {
+      } else if (plan.interval === 'month' && plan.interval_count === 3) {
         planType = 'quarterly';
       } else {
         return; // Skip unsupported intervals
       }
       
-      // Create a unique key for mapping
-      const key = `${currency}-${planType}-${amount}`;
-      mapping[key] = price.id;
+      // Initialize currency group if not exists
+      if (!plansByCurrency[currency]) {
+        plansByCurrency[currency] = {
+          currency: currency,
+          currencyId: currency, // You might want to map this to actual currency IDs
+          plans: {}
+        };
+      }
       
-      console.log(`🗺️ Mapping created: ${key} -> ${price.id}`);
+      // Add plan to currency group
+      plansByCurrency[currency].plans[planType] = {
+        amount: amount,
+        interval: plan.interval,
+        intervalCount: plan.interval_count,
+        priceId: plan.id, // Direct access to price ID
+        active: plan.active
+      };
+      
+      console.log(`📋 Processed plan: ${currency} ${planType} - ${amount} (ID: ${plan.id})`);
     });
     
-    console.log('📋 Complete price mapping:', mapping);
-    return mapping;
-  };
-
-  // Function to map price IDs to plans
-  const mapPriceIdsToPlans = (plans, priceIdMapping) => {
-    return plans.map(currencyPlan => {
-      const updatedPlans = {};
-      
-      Object.entries(currencyPlan.plans).forEach(([planType, planDetails]) => {
-        // Create the same key format used in mapping
-        const key = `${currencyPlan.currency}-${planType}-${planDetails.amount}`;
-        const priceId = priceIdMapping[key];
-        
-        updatedPlans[planType] = {
-          ...planDetails,
-          priceId: priceId || null // Map the actual price ID
-        };
-        
-        console.log(`🔗 Mapping ${key}: ${priceId || 'NOT FOUND'}`);
-        
-        if (!priceId) {
-          console.warn(`⚠️ No price ID found for ${key}`);
-          console.warn(`Available keys:`, Object.keys(priceIdMapping).filter(k => k.startsWith(currencyPlan.currency)));
-        }
-      });
-      
-      return {
-        ...currencyPlan,
-        plans: updatedPlans
-      };
-    });
+    console.log('📦 Processed plans by currency:', plansByCurrency);
+    return Object.values(plansByCurrency);
   };
 
   // Fetch all subscription plans on component mount
@@ -182,53 +147,38 @@ Please refresh the page to see your updated subscription status.`);
     const fetchAllPlans = async () => {
       try {
         setLoading(true);
-        console.log('🔍 Fetching plans and prices...');
+        console.log('🔍 Fetching Stripe plans...');
         
-        // Fetch both your backend plans and Stripe prices in parallel
-        const [plansResponse, stripePrices] = await Promise.all([
-          fetch('https://pigeonhireserver-production.up.railway.app/api/subscriptions/plans'),
-          fetchStripePrices()
-        ]);
+        // Fetch Stripe plans directly
+        const plansResponse = await getStripePlans();
         
-        const plansData = await plansResponse.json();
+        console.log('📦 Stripe plans response:', plansResponse);
         
-        console.log('📦 Backend plans response:', plansData);
-        console.log('💳 Stripe prices count:', stripePrices.length);
-        
-        if (plansData.msg === "Subscription plans retrieved successfully") {
-          // Create price ID mapping from Stripe prices
-          const priceIdMapping = createPriceIdMapping(stripePrices);
+        if (plansResponse.data?.data?.length > 0) {
+          // Process the Stripe plans into our organized structure
+          const processedPlans = processStripePlans(plansResponse.data.data);
           
-          // Map price IDs to your backend plans
-          const plansWithPriceIds = mapPriceIdsToPlans(plansData.plans, priceIdMapping);
-          
-          console.log('✅ Final plans with price IDs:', plansWithPriceIds);
+          console.log('✅ Processed plans:', processedPlans);
           
           // Validate that we have price IDs
-          let missingPriceIds = 0;
           let totalPlans = 0;
           
-          plansWithPriceIds.forEach(currencyPlan => {
+          processedPlans.forEach(currencyPlan => {
             Object.values(currencyPlan.plans).forEach(plan => {
               totalPlans++;
-              if (!plan.priceId) missingPriceIds++;
             });
           });
           
-          console.log(`📊 Price ID Status: ${totalPlans - missingPriceIds}/${totalPlans} plans have price IDs`);
+          console.log(`📊 Total plans processed: ${totalPlans}`);
           
-          if (missingPriceIds > 0) {
-            console.warn(`⚠️ ${missingPriceIds} plans are missing price IDs!`);
-          }
-          
-          setAllPlans(plansWithPriceIds);
+          setAllPlans(processedPlans);
           
           // Set initial plans for USD
-          const usdPlans = plansWithPriceIds.filter(plan => plan.currency === 'USD');
-          console.log('💰 USD Plans with price IDs:', usdPlans);
+          const usdPlans = processedPlans.filter(plan => plan.currency === 'USD');
+          console.log('💰 USD Plans:', usdPlans);
           setSubscriptionPlans(usdPlans);
         } else {
-          console.error('❌ Backend API returned unexpected message:', plansData.msg);
+          console.error('❌ No plans found in Stripe response');
         }
       } catch (error) {
         console.error('💥 Error fetching subscription plans:', error);
@@ -249,7 +199,7 @@ Please refresh the page to see your updated subscription status.`);
     
     console.log(`🔄 Changing currency to: ${newCurrency}`);
     
-    // Filter from already loaded plans with price IDs
+    // Filter from already loaded plans
     const currencyPlans = allPlans.filter(plan => plan.currency === newCurrency);
     console.log(`💱 Filtered ${newCurrency} plans:`, currencyPlans);
     setSubscriptionPlans(currencyPlans);
@@ -355,18 +305,18 @@ Please refresh the page to see your updated subscription status.`);
 
           {loading ? (
             <div style={{ padding: '20px', textAlign: 'center' }}>
-              Loading plans and mapping price IDs...
+              Loading subscription plans...
             </div>
           ) : (
             subscriptionPlans.map((currencyPlan) => (
               Object.entries(currencyPlan.plans).map(([planType, planDetails]) => (
                 <div
                   key={`${currencyPlan.currency}-${planType}`}
-                  className={`upgrade-plan-modal__inner__card ${!planDetails.priceId ? 'disabled' : ''}`}
-                  onClick={() => planDetails.priceId && handlePlanClick(currencyPlan, planType)}
+                  className={`upgrade-plan-modal__inner__card ${!planDetails.active ? 'disabled' : ''}`}
+                  onClick={() => planDetails.active && handlePlanClick(currencyPlan, planType)}
                   style={{
-                    opacity: planDetails.priceId ? 1 : 0.5,
-                    cursor: planDetails.priceId ? 'pointer' : 'not-allowed'
+                    opacity: planDetails.active ? 1 : 0.5,
+                    cursor: planDetails.active ? 'pointer' : 'not-allowed'
                   }}
                 >
                   <div className="upgrade-plan-modal__inner__card__title-group">
@@ -378,7 +328,7 @@ Please refresh the page to see your updated subscription status.`);
                       {getCurrencySymbol(currencyPlan.currency)}
                       {planDetails.amount.toLocaleString()}
                     </div>
-                    {planDetails.priceId && (
+                    {planDetails.active && (
                       <Image
                         alt=""
                         width={32}
@@ -390,10 +340,10 @@ Please refresh the page to see your updated subscription status.`);
                   </div>
                   {/* Status indicator */}
                   <div style={{ fontSize: '10px', marginTop: '5px' }}>
-                    {planDetails.priceId ? (
-                      <span style={{ color: 'green' }}>✅ Ready</span>
+                    {planDetails.active ? (
+                      <span style={{ color: 'green' }}>✅ Active</span>
                     ) : (
-                      <span style={{ color: 'red' }}>❌ Price ID Missing</span>
+                      <span style={{ color: 'orange' }}>⚠️ Inactive</span>
                     )}
                   </div>
                 </div>

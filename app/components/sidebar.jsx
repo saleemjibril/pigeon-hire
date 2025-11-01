@@ -20,6 +20,7 @@ export default function Sidebar() {
   const [currentPlan, setCurrentPlan] = useState("Free plan");
 
   const {token, userInfo} = useSelector((state) => state.auth);
+console.log("userInfo", userInfo);
 
   useEffect(() => {
     if (!token) return;
@@ -131,7 +132,7 @@ export default function Sidebar() {
         <div>
           <div className="sidebar__account__name"> {userInfo?.user?.fname} {userInfo?.user?.lname}</div>
           <div className="sidebar__account__email">
-            @ololadegrace.ot@gmail.com
+            {userInfo?.user?.email}
           </div>
         </div>
       </div>
